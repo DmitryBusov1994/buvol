@@ -119,9 +119,9 @@ export function Hero() {
         scrollY={scrollY}
       />
 
-      <div className="relative z-[3] layout-container flex min-h-0 flex-col justify-start pb-6 pt-2 md:pb-10 md:pt-3">
-        <div className="mt-2 flex w-full min-w-0 flex-col items-stretch gap-8 md:mt-3 md:flex-row md:items-end md:gap-10 lg:gap-11">
-          <div className="flex w-full min-w-0 flex-1 justify-start overflow-visible md:self-end">
+      <div className="relative z-[3] layout-container flex min-h-0 flex-col justify-start pb-6 pt-0 md:pb-10 md:pt-1">
+        <div className="flex w-full min-w-0 flex-col items-stretch gap-5 md:flex-row md:items-center md:gap-10 lg:gap-11">
+          <div className="flex w-full min-w-0 flex-1 justify-start overflow-visible">
             <motion.div
               className="relative -ml-3 block min-w-0 w-full max-w-[min(100%,400px)] bg-transparent sm:max-w-[440px] md:-ml-6 md:inline-block md:w-[min(62vw,580px)] md:max-w-[580px] lg:-ml-8 lg:w-[min(56vw,680px)] lg:max-w-[680px]"
               style={
@@ -244,7 +244,7 @@ export function Hero() {
               </motion.div>
             </motion.div>
           </div>
-          <div className="relative z-[4] flex w-full min-w-0 max-w-2xl flex-1 flex-col items-stretch text-left md:self-end md:-translate-y-[2cm]">
+          <div className="relative z-[4] flex w-full min-w-0 max-w-2xl flex-1 flex-col items-stretch text-left">
             <motion.p
               className="sectionOverline mb-0 text-orange-300/90"
               initial={reduced ? false : { opacity: 0, y: 6 }}
