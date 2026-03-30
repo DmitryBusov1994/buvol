@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FullPricelistPanel } from "@/components/FullPricelistPanel";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
@@ -48,6 +48,27 @@ function ServiceItems({ groupId }: { groupId: string }) {
 export function Services() {
   const [active, setActive] = useState(services[0].id);
   const reduced = usePrefersReducedMotion();
+  const pricelistDetailsRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    const syncHash = () => {
+      if (typeof window === "undefined") return;
+      if (window.location.hash !== "#full-pricelist") return;
+      const el = pricelistDetailsRef.current;
+      if (el) {
+        el.open = true;
+        const smooth =
+          typeof window !== "undefined" &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        requestAnimationFrame(() =>
+          el.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" }),
+        );
+      }
+    };
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
 
   const tabs = useMemo(
     () =>
@@ -148,7 +169,31 @@ export function Services() {
           ))}
         </div>
 
-        <FullPricelistPanel id="full-pricelist" />
+        <details
+          ref={pricelistDetailsRef}
+          id="full-pricelist"
+          className="group mt-10 rounded-2xl border border-white/10 bg-white/5 md:mt-12"
+        >
+          <summary className="cursor-pointer list-none select-none rounded-2xl px-4 py-4 outline-none transition hover:bg-white/[0.07] focus-visible:ring-2 focus-visible:ring-brand-amber/45 md:px-5 md:py-4">
+            <div className="flex items-center justify-between gap-4">
+              <span className="font-[var(--font-heading)] text-base tracking-wide text-white md:text-lg">
+                Полный прайс-лист
+              </span>
+              <span
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-lg text-white/80 transition group-open:rotate-45"
+                aria-hidden
+              >
+                +
+              </span>
+            </div>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/65 md:text-[15px]">
+              Раскройте список, чтобы посмотреть цены по ТО и ремонту. Итоговую сумму согласуем после осмотра.
+            </p>
+          </summary>
+          <div className="border-t border-white/10 px-3 pb-4 pt-4 md:px-4 md:pb-5 md:pt-5">
+            <FullPricelistPanel />
+          </div>
+        </details>
       </div>
     </Section>
   );

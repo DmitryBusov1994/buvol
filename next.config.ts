@@ -1,14 +1,21 @@
 import type { NextConfig } from "next";
 
 /** Статический экспорт для GitHub Pages (репозиторий = подпуть /buvol). Локально/Vercel: не задавайте GITHUB_PAGES. */
+const GH_BASE_PATH = "/buvol";
 const ghPages = process.env.GITHUB_PAGES === "1" || process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  /** Совпадает с basePath: иначе publicAsset() в клиенте даёт /hero-logo.* → 404 на Pages. */
+  env: {
+    NEXT_PUBLIC_BASE_PATH: ghPages
+      ? GH_BASE_PATH
+      : (process.env.NEXT_PUBLIC_BASE_PATH ?? ""),
+  },
   ...(ghPages
     ? {
         output: "export" as const,
-        basePath: "/buvol",
+        basePath: GH_BASE_PATH,
         trailingSlash: true,
       }
     : {}),

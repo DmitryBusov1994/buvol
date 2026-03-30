@@ -13,12 +13,9 @@ function splitPriceLine(line: string): { label: string; price: string | null } {
   };
 }
 
-export function FullPricelistPanel({ id }: { id?: string }) {
+export function FullPricelistPanel() {
   return (
-    <div
-      id={id}
-      className="mt-10 overflow-hidden rounded-3xl border border-brand-amber/25 bg-gradient-to-b from-white via-white to-[#f3f4f6] shadow-[0_24px_60px_rgba(0,0,0,.08)] outline-none ring-1 ring-brand-red/15 md:mt-12"
-    >
+    <div className="overflow-hidden rounded-3xl border border-brand-amber/25 bg-gradient-to-b from-white via-white to-[#f3f4f6] shadow-[0_24px_60px_rgba(0,0,0,.08)] outline-none ring-1 ring-brand-red/15">
       <div className="border-b border-black/[0.07] bg-gradient-to-r from-brand-red/[0.06] via-transparent to-brand-amber/[0.08] px-4 py-5 md:px-7 md:py-6">
         <p className="max-w-3xl text-sm leading-relaxed text-ink/75 md:text-[15px]">
           <span className="font-semibold text-ink">Полный прайс</span>

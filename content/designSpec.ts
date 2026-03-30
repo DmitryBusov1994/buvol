@@ -48,7 +48,7 @@ export const designSpec = {
         },
       },
       fullPricelist: {
-        note: "Полный прайс: блок #full-pricelist внутри #services (FullPricelistPanel), данные content/fullPricelist.ts",
+        note: "Полный прайс: <details id=full-pricelist> в #services, по клику раскрывается FullPricelistPanel; данные content/fullPricelist.ts",
       },
     },
     desktopColumns: { services: 3, advantages: 3 },

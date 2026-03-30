@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 const nav = [
   { href: "#services", label: "Услуги" },
   { href: "#advantages", label: "Преимущества" },
-  { href: "#full-pricelist", label: "Цены" },
   { href: "#faq", label: "FAQ" },
   { href: "#contacts", label: "Контакты" },
 ];
@@ -23,14 +22,13 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    /** Порядок секций на странице + соответствие пунктам меню (без полосы Highlights). */
+    /** Порядок секций; блок Highlights без id — после hero сразу #services. process → «Преимущества» (нет пункта «Как работаем»). */
     const segments: { id: string; nav: string }[] = [
       { id: "hero", nav: "#hero" },
       { id: "services", nav: "#services" },
       { id: "who", nav: "#services" },
       { id: "advantages", nav: "#advantages" },
       { id: "process", nav: "#advantages" },
-      { id: "full-pricelist", nav: "#full-pricelist" },
       { id: "faq", nav: "#faq" },
       { id: "contacts", nav: "#contacts" },
     ];
@@ -68,7 +66,7 @@ export function Header() {
 
   return (
     <header className={cls}>
-      <div className="layout-container flex items-center justify-between gap-3 py-2 md:gap-4">
+      <div className="layout-container flex items-center justify-between gap-3 py-2 md:gap-5">
         <a href="#hero" className="group min-w-0 leading-tight transition-opacity hover:opacity-95">
           <div className="logo-header-brand">
             <span className="logo-header-word-top">БУЙВОЛ</span>
@@ -77,13 +75,13 @@ export function Header() {
           <div className="text-xs text-orange-200/75">Екатеринбург • грузовая техника</div>
         </a>
 
-        <nav className="hidden items-center gap-5 md:flex lg:gap-6">
+        <nav className="hidden items-center justify-center gap-6 md:flex lg:gap-8">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               className={[
-                "relative font-[var(--font-heading)] text-[11px] uppercase tracking-[0.12em] transition hover:text-white lg:text-[13px]",
+                "relative inline-flex min-h-10 items-center font-[var(--font-heading)] text-[11px] uppercase leading-none tracking-[0.12em] transition hover:text-white lg:text-[13px]",
                 activeSection === item.href ? "text-white" : "text-white/80",
               ].join(" ")}
             >
@@ -91,7 +89,7 @@ export function Header() {
               <span
                 aria-hidden="true"
                 className={[
-                  "absolute -bottom-2 left-0 h-[2px] rounded-full bg-brand-amber transition-all duration-300",
+                  "absolute -bottom-1 left-0 h-[2px] rounded-full bg-brand-amber transition-all duration-300",
                   activeSection === item.href ? "w-full opacity-100" : "w-0 opacity-0",
                 ].join(" ")}
               />
@@ -108,15 +106,9 @@ export function Header() {
           </a>
           <a
             href="#contacts"
-            className="press-flame-ghost hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 transition hover:border-orange-400/35 hover:bg-white/10 md:inline-flex"
+            className="press-flame inline-flex shrink-0 rounded-full bg-brand-red px-4 py-2 text-sm font-medium text-white shadow-[0_0_0_1px_rgba(255,120,40,.2),0_8px_28px_rgba(192,57,43,.35)] transition duration-150 ease-out hover:scale-[1.04] hover:bg-[#b4362a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/75 md:px-5"
           >
             Оставить заявку
-          </a>
-          <a
-            href="#full-pricelist"
-            className="press-flame inline-flex shrink-0 rounded-full bg-brand-red px-4 py-2 text-sm font-medium text-white shadow-[0_0_0_1px_rgba(255,120,40,.2),0_8px_28px_rgba(192,57,43,.35)] transition duration-150 ease-out hover:scale-[1.04] hover:bg-[#b4362a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/75"
-          >
-            Прайс
           </a>
           <button
             type="button"

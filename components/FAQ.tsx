@@ -19,7 +19,7 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
       whileInView={reduced ? undefined : "show"}
       viewport={{ once: true, amount: 0.2 }}
       variants={leftSlideVariants}
-      className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_8px_28px_rgba(0,0,0,.06)]"
+      className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_8px_28px_rgba(0,0,0,.2)]"
     >
       <button
         type="button"
@@ -28,13 +28,13 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
       >
-        <span className="min-w-0 flex-1 pr-2 text-base font-medium leading-snug text-ink">
+        <span className="min-w-0 flex-1 pr-2 text-base font-medium leading-snug text-white">
           {question}
         </span>
         <span
           aria-hidden="true"
           className={[
-            "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-black/10 bg-surface-panel text-lg leading-none text-ink/70 transition-transform duration-200",
+            "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-lg leading-none text-white/75 transition-transform duration-200",
             open ? "rotate-45" : "",
           ].join(" ")}
         >
@@ -52,7 +52,7 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
         ].join(" ")}
       >
         <div className="min-h-0 overflow-hidden">
-          <div className="pb-1 text-sm leading-relaxed text-ink/70 md:pb-0">{answer}</div>
+          <div className="pb-1 text-sm leading-relaxed text-white/75 md:pb-0">{answer}</div>
         </div>
       </div>
     </motion.div>
@@ -61,10 +61,12 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
 
 export function FAQ() {
   return (
-    <Section id="faq" className="relative bg-surface-light text-ink industrialStripes">
+    <Section id="faq" className="relative bg-surface-dark">
+      <div className="absolute inset-0 gearPattern opacity-40" />
+      <div className="noiseOverlay" />
       <div className="relative layout-container section-y-compact">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
+          <h2 className="font-[var(--font-heading)] text-3xl tracking-wide text-white md:text-4xl">
             FAQ
           </h2>
           <div className="mt-2">
