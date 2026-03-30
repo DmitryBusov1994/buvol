@@ -1,132 +1,94 @@
 /**
- * Делает фон hero-логотипа прозрачным (как раньше для PNG без «шахматки»/заливки).
+ * Убирает фон-«шахматку» у hero-логотипа по тому же принципу, что patch-hero-logo.cjs
+ * для hero-logo-buivol.png:
  *
- * 1) Глобально: нейтральная серая «матовая» подложка и шахматка (низкий chroma),
- *    светлые клетки — как в patch-hero-logo.cjs, чуть мягче под JPEG.
- * 2) С краёв (BFS): оставшийся тёмный фон, связанный с границей кадра.
+ * Проход 1 — дословно patch-hero-logo.cjs (chroma < 18, серое 22–118, светлые клетки).
+ * Для JPEG-исходника chroma < 22 (блоки сжатия иначе не считаются «нейтральными»).
  *
- * Исходник (любой один): public/hero-logo-source.png → public/hero-logo.jpg → иначе доработка готового hero-logo.png.
- * Результат: public/hero-logo.png (с альфой).
- * Запуск: node scripts/patch-hero-logo-bg.cjs
+ * Проход 2 — только оставшиеся непрозрачные пиксели: лёгкий цветовой шум у серой
+ * шахматки (chroma 18…30, яркость ~72…182). Огонь/металл с насыщенностью выше не трогаем.
+ *
+ * Без BFS с краёв — он портил антиалиасинг и тёмные детали.
+ *
+ * Исходник (первый найденный):
+ *   hero-logo-source.png (новый экспорт) → hero-logo-buivol.png (как в fix-hero-logo) → hero-logo.jpg → hero-logo.png
  */
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
 const inputSourcePng = path.join(__dirname, "..", "public", "hero-logo-source.png");
+const inputBuivolPng = path.join(__dirname, "..", "public", "hero-logo-buivol.png");
 const inputJpg = path.join(__dirname, "..", "public", "hero-logo.jpg");
 const outputPng = path.join(__dirname, "..", "public", "hero-logo.png");
 const tmp = outputPng + ".tmp.png";
 
-function isEdgeBgPixel(r, g, b) {
+function passOneClear(r, g, b, chromaMax) {
   const v = (r + g + b) / 3;
   const chroma = Math.max(r, g, b) - Math.min(r, g, b);
-  return chroma <= 26 && v <= 58;
+  const neutral = chroma < chromaMax;
+  const grayBg = neutral && v >= 22 && v <= 118;
+  const lightMat = v > 200 && chroma < 45;
+  return grayBg || lightMat || v > 248;
+}
+
+/** Остатки шахматки после JPEG / цветового шума */
+function passTwoFringeClear(r, g, b) {
+  const v = (r + g + b) / 3;
+  const chroma = Math.max(r, g, b) - Math.min(r, g, b);
+  return chroma >= 18 && chroma < 30 && v >= 72 && v <= 182;
 }
 
 (async () => {
   const input = fs.existsSync(inputSourcePng)
     ? inputSourcePng
-    : fs.existsSync(inputJpg)
-      ? inputJpg
-      : outputPng;
+    : fs.existsSync(inputBuivolPng)
+      ? inputBuivolPng
+      : fs.existsSync(inputJpg)
+        ? inputJpg
+        : outputPng;
   if (!fs.existsSync(input)) {
-    console.error("Нет файла:", inputSourcePng, "/", inputJpg, "/", outputPng);
+    console.error("Нет файла:", inputSourcePng, "/", inputBuivolPng, "/", inputJpg, "/", outputPng);
     process.exit(1);
   }
 
-  const fromRasterSource = input !== outputPng;
-  console.log("input:", path.basename(input), fromRasterSource ? "(full pipeline)" : "(edge BFS only)");
+  const chromaPass1 = /\.jpe?g$/i.test(input) ? 22 : 18;
+  console.log("input:", path.basename(input), "| pass1 chroma <", chromaPass1);
 
   const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const w = info.width;
   const h = info.height;
-  const n = w * h;
 
-  let globalCleared = 0;
-  if (fromRasterSource) {
-    for (let i = 0; i < data.length; i += 4) {
-      const r = data[i];
-      const g = data[i + 1];
-      const b = data[i + 2];
-      const v = (r + g + b) / 3;
-      const chroma = Math.max(r, g, b) - Math.min(r, g, b);
-
-      const neutral = chroma < 20;
-      const grayMatte = neutral && v >= 18 && v <= 128;
-      const lightMat = v > 198 && chroma < 48;
-      const nearWhite = v > 244 && chroma < 42;
-
-      if (grayMatte || lightMat || nearWhite) {
-        data[i + 3] = 0;
-        globalCleared++;
-      }
+  let n1 = 0;
+  let n2 = 0;
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    if (passOneClear(r, g, b, chromaPass1)) {
+      data[i + 3] = 0;
+      n1++;
     }
   }
-
-  const seen = new Uint8Array(n);
-  const q = [];
-  const at = (x, y) => (y * w + x) * 4;
-  const pi = (x, y) => y * w + x;
-
-  function enqueue(x, y) {
-    if (x < 0 || y < 0 || x >= w || y >= h) return;
-    const p = pi(x, y);
-    if (seen[p]) return;
-    const j = at(x, y);
-    if (data[j + 3] === 0) return;
-    const r = data[j];
-    const g = data[j + 1];
-    const b = data[j + 2];
-    if (!isEdgeBgPixel(r, g, b)) return;
-    seen[p] = 1;
-    q.push(p);
-  }
-
-  for (let x = 0; x < w; x++) {
-    enqueue(x, 0);
-    enqueue(x, h - 1);
-  }
-  for (let y = 0; y < h; y++) {
-    enqueue(0, y);
-    enqueue(w - 1, y);
-  }
-
-  let bfsCleared = 0;
-  while (q.length) {
-    const p = q.pop();
-    const y = Math.floor(p / w);
-    const x = p - y * w;
-    const j = at(x, y);
-    if (data[j + 3] === 0) continue;
-    data[j + 3] = 0;
-    bfsCleared++;
-
-    enqueue(x + 1, y);
-    enqueue(x - 1, y);
-    enqueue(x, y + 1);
-    enqueue(x, y - 1);
+  for (let i = 0; i < data.length; i += 4) {
+    if (data[i + 3] === 0) continue;
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    if (passTwoFringeClear(r, g, b)) {
+      data[i + 3] = 0;
+      n2++;
+    }
   }
 
   await sharp(Buffer.from(data), {
     raw: { width: w, height: h, channels: 4 },
   })
-    .png({ compressionLevel: 9 })
+    .png({ compressionLevel: 9, effort: 10 })
     .toFile(tmp);
 
   fs.renameSync(tmp, outputPng);
-  console.log(
-    "OK:",
-    w,
-    "x",
-    h,
-    "→",
-    path.basename(outputPng),
-    "| global:",
-    globalCleared,
-    "bfs:",
-    bfsCleared,
-  );
+  console.log("OK:", w, "x", h, "→ hero-logo.png | pass1:", n1, "pass2:", n2);
 })().catch((e) => {
   console.error(e);
   process.exit(1);

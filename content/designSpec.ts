@@ -37,7 +37,7 @@ export const designSpec = {
         "В Figma: фрейм 1440 → вложенный auto layout max 1200, padding H 48 (или поля 120 без внутреннего padding). Сетка 12 кол., gap 24.",
       /**
        * Hero (#hero): две колонки flex, flex:1, gap 48px, md:flex-row / мобиле column.
-       * Логотип: public/hero-logo.png (альфа, без фона-шахматки), крупная ширина (до ~680px lg), пар вниз от ноздрей, лёгкий scale «дыхание», parallax от курсора; md: нижний край логотипа = нижний край правой колонки (items-end), блок контента чуть ниже (больший pt контейнера).
+       * Логотип: сырой PNG со «шахматкой» кладётся в hero-logo-buivol.png или hero-logo-source.png → npm run fix-hero-logo-bg → hero-logo.png (альфа). Крупная ширина до ~680px lg, пар, «дыхание», parallax; md: items-end у колонок.
        */
       heroContent: {
         layout: "flex",
