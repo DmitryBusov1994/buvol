@@ -44,7 +44,7 @@ export function WhoWeHelp() {
               variants={diagonalVariants}
               className="flex h-full flex-col rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,.12)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(0,0,0,.18)] md:rounded-3xl md:p-5"
             >
-              <div className="font-[var(--font-heading)] text-sm uppercase leading-snug tracking-wider text-ink">
+              <div className="font-[var(--font-heading)] text-sm uppercase leading-snug tracking-wider text-brand-amber">
                 {seg.title}
               </div>
               <div className="mt-2 text-sm leading-relaxed text-ink/70">{seg.description}</div>

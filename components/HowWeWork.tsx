@@ -37,7 +37,7 @@ export function HowWeWork() {
               variants={revealVariants}
               className="relative flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3.5 transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:px-4 md:py-4"
             >
-              <div className="min-w-0 font-[var(--font-heading)] text-[13px] uppercase leading-snug tracking-wide text-white md:text-sm">
+              <div className="min-w-0 font-[var(--font-heading)] text-[13px] uppercase leading-snug tracking-wide text-brand-amber md:text-sm">
                 {step.title}
               </div>
               <div className="mt-2 text-xs leading-relaxed text-white/72 md:text-[13px]">{step.text}</div>
