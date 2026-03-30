@@ -1,7 +1,5 @@
 /**
- * Раньше перезаписывал hero-logo-buivol.png — портился исходник со шахматкой.
- * Теперь только запускает тот же пайплайн, что patch-hero-logo-bg.cjs → public/hero-logo.png
- * (buivol.png не меняется).
+ * Запускает patch-hero-logo-bg.cjs → public/hero-logo.png из hero-logo-source.png (или hero-logo.jpg).
  */
 const path = require("path");
 const { spawnSync } = require("child_process");

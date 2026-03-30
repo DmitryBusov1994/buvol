@@ -30,6 +30,5 @@ next-env.d.ts
 # testing
 coverage
 
-# сырой логотип → собрать: node scripts/patch-hero-logo-bg.cjs
-public/hero-logo-source.png
+# опциональный JPEG-исходник (если не используете PNG)
 public/hero-logo.jpg

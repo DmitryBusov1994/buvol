@@ -1,6 +1,5 @@
 /**
- * Убирает фон-«шахматку» у hero-логотипа по тому же принципу, что patch-hero-logo.cjs
- * для hero-logo-buivol.png:
+ * Убирает фон-«шахматку» у hero-логотипа (два прохода, без BFS):
  *
  * Проход 1 — дословно patch-hero-logo.cjs (chroma < 18, серое 22–118, светлые клетки).
  * Для JPEG-исходника chroma < 22 (блоки сжатия иначе не считаются «нейтральными»).
@@ -11,14 +10,13 @@
  * Без BFS с краёв — он портил антиалиасинг и тёмные детали.
  *
  * Исходник (первый найденный):
- *   hero-logo-source.png (новый экспорт) → hero-logo-buivol.png (как в fix-hero-logo) → hero-logo.jpg → hero-logo.png
+ *   hero-logo-source.png → hero-logo.jpg (если есть)
  */
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
 const inputSourcePng = path.join(__dirname, "..", "public", "hero-logo-source.png");
-const inputBuivolPng = path.join(__dirname, "..", "public", "hero-logo-buivol.png");
 const inputJpg = path.join(__dirname, "..", "public", "hero-logo.jpg");
 const outputPng = path.join(__dirname, "..", "public", "hero-logo.png");
 const tmp = outputPng + ".tmp.png";
@@ -42,13 +40,11 @@ function passTwoFringeClear(r, g, b) {
 (async () => {
   const input = fs.existsSync(inputSourcePng)
     ? inputSourcePng
-    : fs.existsSync(inputBuivolPng)
-      ? inputBuivolPng
-      : fs.existsSync(inputJpg)
-        ? inputJpg
-        : outputPng;
-  if (!fs.existsSync(input)) {
-    console.error("Нет файла:", inputSourcePng, "/", inputBuivolPng, "/", inputJpg, "/", outputPng);
+    : fs.existsSync(inputJpg)
+      ? inputJpg
+      : null;
+  if (!input) {
+    console.error("Нет сырого логотипа. Положите public/hero-logo-source.png (или public/hero-logo.jpg).");
     process.exit(1);
   }
 
