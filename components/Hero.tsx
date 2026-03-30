@@ -141,7 +141,7 @@ export function Hero() {
                     fetchPriority="high"
                     loading="eager"
                     decoding="async"
-                    className="relative z-[1] h-auto w-full bg-transparent object-contain object-left mix-blend-screen"
+                    className="relative z-[1] h-auto w-full bg-transparent object-contain object-left"
                   />
                 </picture>
               {/* Пар: столб вниз от ноздрей */}

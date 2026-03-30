@@ -10,13 +10,11 @@ export function Advantages() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <Section id="advantages" className="relative bg-surface-dark">
-      <div className="absolute inset-0 gearPattern opacity-40" />
-      <div className="noiseOverlay" />
-      <div className="relative layout-container section-y-default">
+    <Section id="advantages" className="relative bg-surface-light text-ink industrialStripes">
+      <div className="layout-container section-y-default">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div className="min-w-0">
-            <h2 className="font-[var(--font-heading)] text-3xl tracking-wide text-white md:text-4xl">
+            <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
               Наши преимущества
             </h2>
             <SectionHeadingAccent />
@@ -57,4 +55,3 @@ export function Advantages() {
     </Section>
   );
 }
-

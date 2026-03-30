@@ -37,7 +37,7 @@ export const designSpec = {
         "В Figma: фрейм 1440 → вложенный auto layout max 1200, padding H 48 (или поля 120 без внутреннего padding). Сетка 12 кол., gap 24.",
       /**
        * Hero (#hero): две колонки flex, flex:1, gap 48px, md:flex-row / мобиле column.
-       * Логотип: <picture> — hero-logo.webp + hero-logo.png fallback; приоритет fetchPriority=high, loading=eager; константы HERO_LOGO_WIDTH/HEIGHT в Hero.tsx = intrinsic PNG. Обёртки без фона; mix-blend-screen. WebP вручную (squoosh.app) рядом с PNG.
+       * Логотип: <picture> — hero-logo.webp + hero-logo.png; fetchPriority=high, loading=eager; HERO_LOGO_* = intrinsic. Без mix-blend (читаемость на тёмном фоне). Preload webp в layout.
        */
       heroContent: {
         layout: "flex",
@@ -48,7 +48,11 @@ export const designSpec = {
         },
       },
       fullPricelist: {
-        note: "Полный прайс: <details id=full-pricelist> в #services, по клику раскрывается FullPricelistPanel; данные content/fullPricelist.ts",
+        note: "Светлая секция #services: <details id=full-pricelist> → компактный FullPricelistPanel; fullPricelist.ts",
+      },
+      sectionRhythm: {
+        note:
+          "Главная: Hero тёмн. → Highlights (3 карточки) тёмн. → Услуги светл. → Кому помогаем тёмн. → Преимущества светл. → Как работаем тёмн. → FAQ светл. → Контакты тёмн. (форма на белой карточке).",
       },
     },
     desktopColumns: { services: 3, advantages: 3 },
