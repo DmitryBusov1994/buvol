@@ -12,6 +12,9 @@
  * 3) Микро-островки: пиксель окружён фоном с 4 сторон и выглядит как остаток
  *    клетки — делаем прозрачным (не трогаем тёплые огненные тона).
  *
+ * 4) Только сетка: расширяем маску фона в «колодцы» — нейтральный пиксель с ≥4,
+ *    затем ≥3 соседями-фоном (низкий chroma, без огня). RGB не меняем.
+ *
  * Исходник: hero-logo-source.png → иначе hero-logo.jpg (если есть).
  */
 const fs = require("fs");
@@ -139,6 +142,41 @@ function eatFourNeighborHoles(vis, data, w, h, ch, jpeg) {
   return changed;
 }
 
+/** Остаток сетки / нейтральный антиалиас: не огонь, не насыщенный металл */
+function isNeutralGridResidual(r, g, b, jpeg) {
+  if (isWarmAccent(r, g, b)) return false;
+  const v = (r + g + b) / 3;
+  const chroma = Math.max(r, g, b) - Math.min(r, g, b);
+  const cMax = jpeg ? 14 : 12;
+  if (chroma > cMax) return false;
+  if (v > 118) return false;
+  if (r > 138 && r > b + 26 && g > 38) return false;
+  return true;
+}
+
+/** Закрыть «колодцы» сетки: ≥3 соседа уже фон, пиксель нейтральный */
+function expandGridFromEnclosure(vis, data, w, h, ch, jpeg, minNeighbors) {
+  let changed = false;
+  const n = w * h;
+  const next = new Uint8Array(vis);
+  for (let y = 1; y < h - 1; y++) {
+    for (let x = 1; x < w - 1; x++) {
+      const k = y * w + x;
+      if (vis[k]) continue;
+      const nv = vis[k - 1] + vis[k + 1] + vis[k - w] + vis[k + w];
+      if (nv < minNeighbors) continue;
+      const i = k * ch;
+      if (!isNeutralGridResidual(data[i], data[i + 1], data[i + 2], jpeg)) continue;
+      next[k] = 1;
+      changed = true;
+    }
+  }
+  if (changed) {
+    for (let i = 0; i < n; i++) if (next[i]) vis[i] = 1;
+  }
+  return changed;
+}
+
 (async () => {
   const input = fs.existsSync(inputSourcePng)
     ? inputSourcePng
@@ -176,6 +214,13 @@ function eatFourNeighborHoles(vis, data, w, h, ch, jpeg) {
   }
   for (let i = 0; i < 12; i++) {
     if (!eatFourNeighborHoles(vis, data, w, h, 4, jpeg)) break;
+  }
+
+  for (let pass = 0; pass < 28; pass++) {
+    if (!expandGridFromEnclosure(vis, data, w, h, 4, jpeg, 4)) break;
+  }
+  for (let pass = 0; pass < 14; pass++) {
+    if (!expandGridFromEnclosure(vis, data, w, h, 4, jpeg, 3)) break;
   }
 
   let cleared = 0;

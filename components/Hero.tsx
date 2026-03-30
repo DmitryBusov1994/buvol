@@ -128,6 +128,11 @@ export function Hero() {
                     : { duration: 4.2, repeat: Infinity, ease: "easeInOut" }
                 }
               >
+                {/* Та же база, что у heroBackdrop: в прозрачных местах логотипа — не «серый PNG», а фон секции */}
+                <div
+                  className="pointer-events-none absolute inset-0 z-0 bg-[#0e0e10] bg-hero-truck bg-hero-radial"
+                  aria-hidden
+                />
                 <Image
                   src={publicAsset("/hero-logo.png")}
                   alt="Буйвол Мотор — логотип"
