@@ -18,10 +18,21 @@ import { publicAsset } from "@/lib/publicPath";
 const HERO_LOGO_WIDTH = 500;
 const HERO_LOGO_HEIGHT = 500;
 
-const STEAM_DOWN = {
+/** Базовое «дыхание»; левый/правый ноздри — снос в сторону по мере опускания (x синхронен с y). */
+const STEAM_BASE = {
   opacity: [0.35, 0.92, 0.38],
   y: [0, 36, 0],
   scaleY: [0.75, 1.22, 0.78],
+};
+const STEAM_LEFT = {
+  ...STEAM_BASE,
+  x: [0, -14, 0],
+  rotate: [0, -3.5, 0],
+};
+const STEAM_RIGHT = {
+  ...STEAM_BASE,
+  x: [0, 14, 0],
+  rotate: [0, 3.5, 0],
 };
 
 export function Hero() {
@@ -156,11 +167,12 @@ export function Hero() {
                       style={{
                         mixBlendMode: "screen",
                         filter: "blur(11px)",
+                        transformOrigin: "50% 0%",
                         background:
                           "linear-gradient(180deg, rgba(255,252,235,0.98) 0%, rgba(255,195,120,0.55) 28%, rgba(255,130,70,0.22) 55%, rgba(255,90,40,0.06) 78%, transparent 100%)",
                         borderRadius: "45% 45% 60% 60% / 12% 12% 88% 88%",
                       }}
-                      animate={STEAM_DOWN}
+                      animate={STEAM_LEFT}
                       transition={{
                         duration: 2.35,
                         repeat: Infinity,
@@ -172,11 +184,12 @@ export function Hero() {
                       style={{
                         mixBlendMode: "screen",
                         filter: "blur(14px)",
+                        transformOrigin: "50% 0%",
                         background:
                           "linear-gradient(180deg, rgba(255,245,210,0.75) 0%, rgba(255,160,80,0.35) 45%, transparent 92%)",
                         borderRadius: "50% 50% 55% 55% / 10% 10% 90% 90%",
                       }}
-                      animate={STEAM_DOWN}
+                      animate={STEAM_LEFT}
                       transition={{
                         duration: 2.8,
                         repeat: Infinity,
@@ -194,11 +207,12 @@ export function Hero() {
                       style={{
                         mixBlendMode: "screen",
                         filter: "blur(11px)",
+                        transformOrigin: "50% 0%",
                         background:
                           "linear-gradient(180deg, rgba(255,252,235,0.98) 0%, rgba(255,195,120,0.55) 28%, rgba(255,130,70,0.22) 55%, rgba(255,90,40,0.06) 78%, transparent 100%)",
                         borderRadius: "45% 45% 60% 60% / 12% 12% 88% 88%",
                       }}
-                      animate={STEAM_DOWN}
+                      animate={STEAM_RIGHT}
                       transition={{
                         duration: 2.35,
                         repeat: Infinity,
@@ -211,11 +225,12 @@ export function Hero() {
                       style={{
                         mixBlendMode: "screen",
                         filter: "blur(14px)",
+                        transformOrigin: "50% 0%",
                         background:
                           "linear-gradient(180deg, rgba(255,245,210,0.75) 0%, rgba(255,160,80,0.35) 45%, transparent 92%)",
                         borderRadius: "50% 50% 55% 55% / 10% 10% 90% 90%",
                       }}
-                      animate={STEAM_DOWN}
+                      animate={STEAM_RIGHT}
                       transition={{
                         duration: 2.8,
                         repeat: Infinity,
