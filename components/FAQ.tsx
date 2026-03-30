@@ -7,20 +7,10 @@ import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { leftSlideVariants, usePrefersReducedMotion } from "@/lib/motion";
 
-function FaqRow({
-  idx,
-  question,
-  answer,
-  defaultOpen,
-}: {
-  idx: number;
-  question: string;
-  answer: string;
-  defaultOpen?: boolean;
-}) {
+function FaqRow({ idx, question, answer }: { idx: number; question: string; answer: string }) {
   const reduced = usePrefersReducedMotion();
   const panelId = useId();
-  const [open, setOpen] = useState(Boolean(defaultOpen));
+  const [open, setOpen] = useState(false);
 
   return (
     <motion.div
@@ -29,36 +19,41 @@ function FaqRow({
       whileInView={reduced ? undefined : "show"}
       viewport={{ once: true, amount: 0.2 }}
       variants={leftSlideVariants}
-      className="rounded-3xl border border-white/10 bg-white/5"
+      className="overflow-hidden rounded-2xl border border-white/10 bg-white/5"
     >
       <button
         type="button"
-        className="flex w-full items-center justify-between gap-4 p-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50"
+        className="flex w-full items-center justify-between gap-4 p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50 md:p-5"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
       >
-        <span className="text-base font-medium text-white">{question}</span>
+        <span className="min-w-0 flex-1 pr-2 text-base font-medium leading-snug text-white">
+          {question}
+        </span>
         <span
           aria-hidden="true"
           className={[
-            "inline-flex h-9 w-9 items-center justify-center rounded-2xl border border-white/10 bg-surface-darker/40 text-white/80 transition",
+            "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-surface-darker/40 text-lg leading-none text-white/80 transition-transform duration-200",
             open ? "rotate-45" : "",
           ].join(" ")}
         >
           +
         </span>
       </button>
+      {/* 0fr/1fr + overflow-hidden на вложенном блоке — иначе ответ «протекает» в поток и виден всегда */}
       <div
         id={panelId}
         role="region"
-        aria-label={question}
+        aria-hidden={!open}
         className={[
-          "grid overflow-hidden px-5 transition-[grid-template-rows] duration-200",
-          open ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr] pb-0",
+          "grid px-4 transition-[grid-template-rows] duration-200 ease-out md:px-5",
+          open ? "grid-rows-[1fr] pb-4 md:pb-5" : "grid-rows-[0fr] pb-0",
         ].join(" ")}
       >
-        <div className="min-h-0 pb-4 text-sm leading-relaxed text-white/70">{answer}</div>
+        <div className="min-h-0 overflow-hidden">
+          <div className="pb-1 text-sm leading-relaxed text-white/70 md:pb-0">{answer}</div>
+        </div>
       </div>
     </motion.div>
   );
@@ -71,22 +66,18 @@ export function FAQ() {
       <div className="noiseOverlay" />
 
       <div className="relative layout-container section-y-compact">
-        <div>
+        <div className="mx-auto max-w-2xl">
           <h2 className="font-[var(--font-heading)] text-3xl tracking-wide text-white md:text-4xl">
             FAQ
           </h2>
-          <SectionHeadingAccent />
+          <div className="mt-2">
+            <SectionHeadingAccent />
+          </div>
         </div>
 
         <div className="mx-auto mt-8 grid max-w-2xl gap-3 md:mt-10">
           {faq.map((f, i) => (
-            <FaqRow
-              key={f.question}
-              idx={i}
-              question={f.question}
-              answer={f.answer}
-              defaultOpen={i === 0}
-            />
+            <FaqRow key={f.question} idx={i} question={f.question} answer={f.answer} />
           ))}
         </div>
       </div>
