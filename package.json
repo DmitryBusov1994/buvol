@@ -12,7 +12,8 @@
     "start": "next start -p 3010 -H 0.0.0.0",
     "lint": "next lint",
     "fix-hero-logo": "node scripts/patch-hero-logo.cjs",
-    "fix-hero-logo-bg": "node scripts/patch-hero-logo-bg.cjs"
+    "fix-hero-logo-bg": "node scripts/patch-hero-logo-bg.cjs",
+    "regen:hero-logo": "node scripts/regen-hero-logo-from-source.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",

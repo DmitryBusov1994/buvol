@@ -14,9 +14,9 @@ import { HeroWorkshopAtmosphere } from "@/components/HeroWorkshopAtmosphere";
 import { usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
 
-/** Совпадает с intrinsic size public/hero-logo.png (обновите при смене файла). */
-const HERO_LOGO_WIDTH = 512;
-const HERO_LOGO_HEIGHT = 512;
+/** Совпадает с intrinsic size public/hero-logo-source.png (исходник; WebP — public/hero-logo.webp). */
+const HERO_LOGO_WIDTH = 500;
+const HERO_LOGO_HEIGHT = 500;
 
 const STEAM_DOWN = {
   opacity: [0.35, 0.92, 0.38],
@@ -134,7 +134,7 @@ export function Hero() {
                 <picture>
                   <source type="image/webp" srcSet={publicAsset("/hero-logo.webp")} />
                   <img
-                    src={publicAsset("/hero-logo.png")}
+                    src={publicAsset("/hero-logo-source.png")}
                     alt="Буйвол Мотор — логотип"
                     width={HERO_LOGO_WIDTH}
                     height={HERO_LOGO_HEIGHT}

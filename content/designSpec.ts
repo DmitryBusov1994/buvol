@@ -37,12 +37,12 @@ export const designSpec = {
         "В Figma: фрейм 1440 → вложенный auto layout max 1200, padding H 48 (или поля 120 без внутреннего padding). Сетка 12 кол., gap 24.",
       /**
        * Hero (#hero): две колонки flex, flex:1, gap 48px, md:flex-row / мобиле column.
-       * Логотип: <picture> — hero-logo.webp + hero-logo.png; fetchPriority=high, loading=eager; HERO_LOGO_* = intrinsic. Без mix-blend (читаемость на тёмном фоне). Preload webp в layout.
+       * Логотип: <picture> webp public/hero-logo.webp + fallback img public/hero-logo-source.png; исходник — hero-logo-source.png, WebP пересобирать из него (sharp). HERO_LOGO_* = 500×500. Preload webp в layout.
        */
       heroContent: {
         layout: "flex",
         gapPx: 48,
-        logoAsset: "/hero-logo.webp + /hero-logo.png",
+        logoAsset: "/hero-logo.webp + /hero-logo-source.png",
         copy: {
           note: "Правая колонка z-[4], md:items-start, md:pt для выравнивания с крупным логотипом",
         },
