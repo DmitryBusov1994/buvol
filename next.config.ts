@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
 
+/** Статический экспорт для GitHub Pages (репозиторий = подпуть /buvol). Локально/Vercel: не задавайте GITHUB_PAGES. */
+const ghPages = process.env.GITHUB_PAGES === "1" || process.env.GITHUB_PAGES === "true";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  ...(ghPages
+    ? {
+        output: "export" as const,
+        basePath: "/buvol",
+        trailingSlash: true,
+      }
+    : {}),
+  images: {
+    unoptimized: ghPages,
+  },
   /** Иначе при открытии через 127.0.0.1 Next блокирует /_next/* и страница «пустая» */
   allowedDevOrigins: ["127.0.0.1", "localhost"],
 

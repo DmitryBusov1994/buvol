@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { publicAsset } from "@/lib/publicPath";
 
 /** Шрифты через <link>: не блокируют компиляцию dev/build при таймаутах Google (в отличие от next/font/google). */
 const googleFontsHref =
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "СТО «Буйвол Моторс»: ремонт и техническое обслуживание тягачей, самосвалов, фургонов и спецтехники. Диагностика, ДВС, КПП, тормоза, подвеска, рулевое.",
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [{ url: publicAsset("/icon.svg"), type: "image/svg+xml" }],
   },
 };
 

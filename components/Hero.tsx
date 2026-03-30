@@ -13,6 +13,7 @@ import { hero } from "@/content/siteContent";
 import { HeroGearSvg } from "@/components/HeroGearSvg";
 import { HeroWorkshopAtmosphere } from "@/components/HeroWorkshopAtmosphere";
 import { usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
 
 const STEAM_DOWN = {
   opacity: [0.35, 0.92, 0.38],
@@ -119,7 +120,7 @@ export function Hero() {
               }
             >
               <Image
-                src="/hero-logo.png"
+                src={publicAsset("/hero-logo.png")}
                 alt="Буйвол Моторс"
                 width={5040}
                 height={5040}
