@@ -107,9 +107,9 @@ export function Hero() {
 
       <div className="relative z-[3] layout-container flex min-h-0 flex-col justify-start pb-6 pt-2 md:pb-10 md:pt-3">
         <div className="mt-2 flex w-full min-w-0 flex-col items-stretch gap-8 md:mt-3 md:flex-row md:items-end md:gap-10 lg:gap-11">
-          <div className="flex w-full min-w-0 flex-1 justify-start overflow-hidden md:overflow-visible md:self-end">
+          <div className="flex w-full min-w-0 flex-1 justify-start overflow-visible md:self-end">
             <motion.div
-              className="relative -ml-3 block min-w-0 w-full max-w-[min(100%,400px)] sm:max-w-[440px] md:-ml-6 md:inline-block md:w-[min(62vw,580px)] md:max-w-[580px] lg:-ml-8 lg:w-[min(56vw,680px)] lg:max-w-[680px]"
+              className="relative -ml-3 block min-w-0 w-full max-w-[min(100%,400px)] bg-transparent sm:max-w-[440px] md:-ml-6 md:inline-block md:w-[min(62vw,580px)] md:max-w-[580px] lg:-ml-8 lg:w-[min(56vw,680px)] lg:max-w-[680px]"
               style={
                 reduced
                   ? undefined
@@ -120,7 +120,7 @@ export function Hero() {
               }
             >
               <motion.div
-                className="relative w-full"
+                className="relative w-full bg-transparent p-0"
                 animate={reduced ? undefined : { scale: [1, 1.014, 1] }}
                 transition={
                   reduced
@@ -128,11 +128,6 @@ export function Hero() {
                     : { duration: 4.2, repeat: Infinity, ease: "easeInOut" }
                 }
               >
-                {/* Та же база, что у heroBackdrop: в прозрачных местах логотипа — не «серый PNG», а фон секции */}
-                <div
-                  className="pointer-events-none absolute inset-0 z-0 bg-[#0e0e10] bg-hero-truck bg-hero-radial"
-                  aria-hidden
-                />
                 <Image
                   src={publicAsset("/hero-logo.png")}
                   alt="Буйвол Мотор — логотип"
@@ -140,7 +135,7 @@ export function Hero() {
                   height={477}
                   priority
                   sizes="(max-width: 767px) 95vw, (max-width: 1200px) 58vw, 680px"
-                  className="relative z-[1] h-auto w-full object-contain object-left"
+                  className="relative z-[1] h-auto w-full bg-transparent object-contain object-left mix-blend-screen"
                 />
               {/* Пар: столб вниз от ноздрей */}
               {!reduced && (

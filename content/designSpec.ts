@@ -37,7 +37,7 @@ export const designSpec = {
         "В Figma: фрейм 1440 → вложенный auto layout max 1200, padding H 48 (или поля 120 без внутреннего padding). Сетка 12 кол., gap 24.",
       /**
        * Hero (#hero): две колонки flex, flex:1, gap 48px, md:flex-row / мобиле column.
-       * Логотип: hero-logo.png; исходник hero-logo-source.png — если RGBA, скрипт только копирует; если RGB со сеткой — fix-hero-logo-bg снимает фон. Под PNG — слой bg-hero-truck/radial. Крупная ширина до ~680px lg, пар, «дыхание», parallax; md: items-end у колонок.
+       * Логотип: hero-logo.png (RGBA); обёртки без фона, без overflow-hidden у колонки; img mix-blend-screen. Исходник hero-logo-source.png — RGBA passthrough или fix-hero-logo-bg для RGB со сеткой. Крупная ширина до ~680px lg, пар, «дыхание», parallax; md: items-end у колонок.
        */
       heroContent: {
         layout: "flex",
