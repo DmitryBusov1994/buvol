@@ -8,7 +8,6 @@ import { WhoWeHelp } from "@/components/WhoWeHelp";
 import { Services } from "@/components/Services";
 import { Advantages } from "@/components/Advantages";
 import { HowWeWork } from "@/components/HowWeWork";
-import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { Contacts } from "@/components/Contacts";
 import { Footer } from "@/components/Footer";
@@ -21,11 +20,10 @@ export default function Page() {
       <main className="relative z-10">
         <Hero />
         <HighlightsStrip />
-        <WhoWeHelp />
         <Services />
+        <WhoWeHelp />
         <Advantages />
         <HowWeWork />
-        <Pricing />
         <FAQ />
         <Contacts />
       </main>

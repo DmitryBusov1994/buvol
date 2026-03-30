@@ -146,10 +146,10 @@ export const landingBlocksMap: { id: string; title: string; goal: string; highli
       highlights: "Диагностика → согласование → ремонт → контроль → выдача.",
     },
     {
-      id: "pricing",
-      title: "Ключевые цены",
-      goal: "Дать понятные цены по типовым работам без перегруза прайсом.",
-      highlights: "Нормо‑час, ТО, капремонт ДВС, КПП + типовые мелкие работы.",
+      id: "full-pricelist",
+      title: "Полный прайс",
+      goal: "Полный прайс-лист в конце секции услуг.",
+      highlights: "Нормо‑час, ТО, капремонт, типовые работы — см. fullPricelist.",
     },
     {
       id: "faq",

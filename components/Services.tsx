@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { FullPricelistPanel } from "@/components/FullPricelistPanel";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { services } from "@/content/siteContent";
@@ -70,12 +71,6 @@ export function Services() {
             </h2>
             <SectionHeadingAccent />
           </div>
-          <a
-            href="#pricing"
-            className="hidden rounded-2xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 md:inline-flex"
-          >
-            Ключевые цены
-          </a>
         </div>
 
         {/* Desktop tabs */}
@@ -152,6 +147,8 @@ export function Services() {
             </motion.details>
           ))}
         </div>
+
+        <FullPricelistPanel id="full-pricelist" />
       </div>
     </Section>
   );

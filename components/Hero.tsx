@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useRef, type PointerEvent } from "react";
 import {
   motion,
@@ -14,6 +13,10 @@ import { HeroGearSvg } from "@/components/HeroGearSvg";
 import { HeroWorkshopAtmosphere } from "@/components/HeroWorkshopAtmosphere";
 import { usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
+
+/** Совпадает с intrinsic size public/hero-logo.png (обновите при смене файла). */
+const HERO_LOGO_WIDTH = 512;
+const HERO_LOGO_HEIGHT = 512;
 
 const STEAM_DOWN = {
   opacity: [0.35, 0.92, 0.38],
@@ -128,15 +131,19 @@ export function Hero() {
                     : { duration: 4.2, repeat: Infinity, ease: "easeInOut" }
                 }
               >
-                <Image
-                  src={publicAsset("/hero-logo.png")}
-                  alt="Буйвол Мотор — логотип"
-                  width={6240}
-                  height={6240}
-                  priority
-                  sizes="(max-width: 767px) 95vw, (max-width: 1200px) 58vw, 680px"
-                  className="relative z-[1] h-auto w-full bg-transparent object-contain object-left mix-blend-screen"
-                />
+                <picture>
+                  <source type="image/webp" srcSet={publicAsset("/hero-logo.webp")} />
+                  <img
+                    src={publicAsset("/hero-logo.png")}
+                    alt="Буйвол Мотор — логотип"
+                    width={HERO_LOGO_WIDTH}
+                    height={HERO_LOGO_HEIGHT}
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="async"
+                    className="relative z-[1] h-auto w-full bg-transparent object-contain object-left mix-blend-screen"
+                  />
+                </picture>
               {/* Пар: столб вниз от ноздрей */}
               {!reduced && (
                 <>
@@ -259,13 +266,13 @@ export function Hero() {
             </motion.ul>
 
             <motion.div
-              className="mb-0 flex w-full max-w-2xl flex-wrap items-end gap-4 rounded-xl border border-white/12 bg-black/35 p-4 backdrop-blur-[6px] md:gap-6"
+              className="mb-0 flex w-full max-w-2xl flex-wrap items-end gap-4 rounded-xl border border-white/12 bg-black/35 p-3 backdrop-blur-[6px] md:gap-6 md:p-4"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.12 }}
             >
               {hero.priceHints.map((p) => (
-                <div key={p.label} className="flex min-h-[5.5rem] min-w-[5.5rem] flex-col justify-end md:min-h-[6rem]">
+                <div key={p.label} className="flex shrink-0 flex-col justify-end">
                   <div className="font-[var(--font-heading)] text-[10px] uppercase tracking-[0.12em] text-white/55 md:text-[11px]">
                     {p.label}
                   </div>

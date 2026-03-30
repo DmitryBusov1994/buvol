@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 const nav = [
   { href: "#services", label: "Услуги" },
   { href: "#advantages", label: "Преимущества" },
-  { href: "#pricing", label: "Цены" },
+  { href: "#full-pricelist", label: "Цены" },
   { href: "#faq", label: "FAQ" },
   { href: "#contacts", label: "Контакты" },
 ];
@@ -26,11 +26,11 @@ export function Header() {
     /** Порядок секций на странице + соответствие пунктам меню (без полосы Highlights). */
     const segments: { id: string; nav: string }[] = [
       { id: "hero", nav: "#hero" },
-      { id: "who", nav: "#services" },
       { id: "services", nav: "#services" },
+      { id: "who", nav: "#services" },
       { id: "advantages", nav: "#advantages" },
       { id: "process", nav: "#advantages" },
-      { id: "pricing", nav: "#pricing" },
+      { id: "full-pricelist", nav: "#full-pricelist" },
       { id: "faq", nav: "#faq" },
       { id: "contacts", nav: "#contacts" },
     ];
@@ -113,7 +113,7 @@ export function Header() {
             Оставить заявку
           </a>
           <a
-            href="#pricing"
+            href="#full-pricelist"
             className="press-flame inline-flex shrink-0 rounded-full bg-brand-red px-4 py-2 text-sm font-medium text-white shadow-[0_0_0_1px_rgba(255,120,40,.2),0_8px_28px_rgba(192,57,43,.35)] transition duration-150 ease-out hover:scale-[1.04] hover:bg-[#b4362a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/75"
           >
             Прайс
