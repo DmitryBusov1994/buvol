@@ -42,12 +42,12 @@ export function WhoWeHelp() {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, amount: 0.2 }}
               variants={diagonalVariants}
-              className="flex h-full flex-col rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,.12)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(0,0,0,.18)] md:rounded-3xl md:p-5"
+              className="flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3.5 transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:px-4 md:py-4"
             >
-              <div className="font-[var(--font-heading)] text-sm uppercase leading-snug tracking-wider text-brand-amber">
+              <div className="min-w-0 font-[var(--font-heading)] text-sm uppercase leading-snug tracking-wide text-brand-amber">
                 {seg.title}
               </div>
-              <div className="mt-2 text-sm leading-relaxed text-ink/70">{seg.description}</div>
+              <div className="mt-2 text-sm leading-relaxed text-white/72">{seg.description}</div>
             </motion.div>
           ))}
         </div>
