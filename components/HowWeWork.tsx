@@ -26,7 +26,7 @@ export function HowWeWork() {
           </p>
         </div>
 
-        <div className="mt-10 grid auto-rows-fr grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-3 sm:mt-9 sm:grid-cols-2 sm:gap-3 lg:mx-auto lg:max-w-5xl lg:grid-cols-5 lg:gap-3">
           {howWeWork.map((step, i) => (
             <motion.div
               key={step.title}
@@ -35,15 +35,12 @@ export function HowWeWork() {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, amount: 0.2 }}
               variants={revealVariants}
-              className="relative flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:bg-white/[0.07]"
+              className="relative flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3.5 transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:px-4 md:py-4"
             >
-              <div className="font-[var(--font-heading)] text-2xl tabular-nums leading-none text-brand-amber md:text-3xl">
-                {i + 1}
-              </div>
-              <div className="mt-3 min-w-0 font-[var(--font-heading)] text-base uppercase leading-snug tracking-wide text-white">
+              <div className="min-w-0 font-[var(--font-heading)] text-[13px] uppercase leading-snug tracking-wide text-white md:text-sm">
                 {step.title}
               </div>
-              <div className="mt-1.5 text-sm leading-relaxed text-white/75">{step.text}</div>
+              <div className="mt-2 text-xs leading-relaxed text-white/72 md:text-[13px]">{step.text}</div>
             </motion.div>
           ))}
         </div>
