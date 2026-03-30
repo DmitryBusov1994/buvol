@@ -77,13 +77,13 @@ export function Header() {
           <div className="text-xs text-orange-200/75">Екатеринбург • грузовая техника</div>
         </a>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-6">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               className={[
-                "relative text-sm transition hover:text-white",
+                "relative font-[var(--font-heading)] text-[11px] uppercase tracking-[0.12em] transition hover:text-white lg:text-[13px]",
                 activeSection === item.href ? "text-white" : "text-white/80",
               ].join(" ")}
             >
@@ -102,19 +102,19 @@ export function Header() {
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <a
             href="#contacts"
-            className="press-flame-ghost inline-flex shrink-0 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 transition hover:border-orange-400/35 hover:bg-white/10 md:hidden"
+            className="press-flame-ghost inline-flex shrink-0 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 transition hover:border-orange-400/35 hover:bg-white/10 md:hidden"
           >
             Связаться
           </a>
           <a
             href="#contacts"
-            className="press-flame-ghost hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/90 transition hover:border-orange-400/35 hover:bg-white/10 md:inline-flex"
+            className="press-flame-ghost hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 transition hover:border-orange-400/35 hover:bg-white/10 md:inline-flex"
           >
             Оставить заявку
           </a>
           <a
             href="#pricing"
-            className="press-flame inline-flex shrink-0 rounded-full bg-brand-red px-3 py-2 text-xs font-medium text-white shadow-[0_0_0_1px_rgba(255,120,40,.2),0_8px_28px_rgba(192,57,43,.35)] transition duration-150 ease-out hover:scale-[1.04] hover:bg-[#b4362a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/75 sm:px-4 sm:text-sm"
+            className="press-flame inline-flex shrink-0 rounded-full bg-brand-red px-4 py-2 text-sm font-medium text-white shadow-[0_0_0_1px_rgba(255,120,40,.2),0_8px_28px_rgba(192,57,43,.35)] transition duration-150 ease-out hover:scale-[1.04] hover:bg-[#b4362a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/75"
           >
             Прайс
           </a>
@@ -156,7 +156,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm text-white/90"
+                className="font-[var(--font-heading)] text-[11px] uppercase tracking-[0.12em] text-white/90"
               >
                 {item.label}
               </a>

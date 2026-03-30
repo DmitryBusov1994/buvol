@@ -27,7 +27,7 @@ export function Advantages() {
           </a>
         </div>
 
-        <div className="mt-8 grid items-stretch gap-3 sm:mt-9 sm:gap-3.5 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-4">
+        <div className="mt-8 grid auto-rows-fr grid-cols-1 items-stretch gap-6 sm:mt-9 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
           {advantages.map((a, i) => (
             <motion.div
               key={a.title}
@@ -36,12 +36,18 @@ export function Advantages() {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, amount: 0.2 }}
               variants={revealVariants}
-              className="flex h-full flex-col rounded-2xl border border-black/10 bg-white p-4 shadow-[0_12px_32px_rgba(0,0,0,.05)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,.08)] md:rounded-2xl"
+              className="flex h-full flex-col rounded-2xl border border-black/10 bg-white p-4 shadow-[0_12px_32px_rgba(0,0,0,.05)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,.08)] md:rounded-2xl md:p-5"
             >
-              <div className="min-h-[2.75rem] shrink-0 font-[var(--font-heading)] text-lg leading-tight tracking-wide md:min-h-[3.25rem] md:text-xl">
-                {a.title}
+              <div className="flex min-h-[2.75rem] shrink-0 items-start gap-3 md:min-h-[3.25rem]">
+                <span
+                  aria-hidden
+                  className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-red/80"
+                />
+                <span className="min-w-0 font-[var(--font-heading)] text-sm uppercase leading-snug tracking-wider text-ink">
+                  {a.title}
+                </span>
               </div>
-              <p className="mt-2 text-sm leading-snug text-ink/70 md:leading-relaxed">{a.text}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink/70">{a.text}</p>
             </motion.div>
           ))}
         </div>

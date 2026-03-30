@@ -15,15 +15,15 @@ export function Contacts() {
   return (
     <Section id="contacts" className="relative bg-surface-panel text-ink industrialStripes">
       <div className="layout-container section-y-spacious">
-        <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
           <div>
             <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
               {contacts.title}
             </h2>
             <SectionHeadingAccent />
-            <p className="mt-3 max-w-xl text-base leading-relaxed text-ink/70">{contacts.text}</p>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">{contacts.text}</p>
 
-            <div className="mt-8 grid gap-3">
+            <div className="mt-8 grid gap-4">
               {[
                 { label: "Телефон", value: contacts.todos.phone || "—" },
                 { label: "Адрес", value: contacts.todos.address || "—" },
@@ -40,20 +40,22 @@ export function Contacts() {
                   variants={revealVariants}
                   className="rounded-3xl border border-black/10 bg-white p-5 shadow-[0_20px_50px_rgba(0,0,0,.06)]"
                 >
-                  <div className="text-xs font-medium uppercase tracking-wider text-ink/60">
+                  <div className="font-[var(--font-heading)] text-[10px] uppercase tracking-[0.12em] text-ink/55">
                     {row.label}
                   </div>
-                  <div className="mt-2 font-mono text-sm text-ink/80">{row.value}</div>
+                  <div className="mt-1 text-base text-ink/90">{row.value}</div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          <LeadRequestForm
-            density="compact"
-            title={leadForm.contactsCardTitle}
-            description={leadForm.contactsCardHint}
-          />
+          <div className="max-w-[min(100%,400px)] justify-self-start md:max-w-none">
+            <LeadRequestForm
+              density="compact"
+              title={leadForm.contactsCardTitle}
+              description={leadForm.contactsCardHint}
+            />
+          </div>
         </div>
       </div>
     </Section>

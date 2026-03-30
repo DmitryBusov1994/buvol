@@ -30,10 +30,10 @@ function ServiceItems({ groupId }: { groupId: string }) {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, amount: 0.3 }}
               variants={revealVariants}
-              className="flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-left transition duration-150 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(192,57,43,.18)] md:rounded-2xl md:px-4 md:py-3 md:hover:-translate-y-1"
+              className="flex items-baseline justify-between gap-4 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-left transition duration-150 ease-out hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(192,57,43,.18)] md:rounded-2xl md:px-4 md:py-2 md:hover:-translate-y-1"
             >
-              <span className="min-w-0 flex-1 text-sm leading-snug text-white/80">{it.label}</span>
-              <span className="shrink-0 whitespace-nowrap text-sm font-semibold tabular-nums text-white">
+              <span className="min-w-0 flex-1 text-sm leading-snug text-white/75">{it.label}</span>
+              <span className="shrink-0 whitespace-nowrap text-sm font-medium tabular-nums text-white">
                 {it.priceRub}
               </span>
             </motion.li>
@@ -79,7 +79,7 @@ export function Services() {
         </div>
 
         {/* Desktop tabs */}
-        <div className="mt-10 hidden gap-3 md:flex md:flex-wrap">
+        <div className="mt-10 hidden items-center gap-1 md:flex md:flex-wrap md:gap-2">
           {tabs.map((t) => {
             const isActive = active === t.id;
             return (
@@ -88,7 +88,7 @@ export function Services() {
                 type="button"
                 onClick={() => setActive(t.id)}
                 className={[
-                  "rounded-full px-4 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
+                  "inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
                   isActive
                     ? "bg-brand-amber text-ink"
                     : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white",
@@ -130,7 +130,9 @@ export function Services() {
                   <div className="font-[var(--font-heading)] text-lg tracking-wide text-white md:text-xl">
                     {group.title}
                   </div>
-                  <span className="text-white/70 transition group-open:rotate-45">+</span>
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center self-center text-white/70 transition group-open:rotate-45">
+                    +
+                  </span>
                 </div>
                 <div className="mt-1.5 text-sm leading-relaxed text-white/70">{group.description}</div>
               </summary>
@@ -138,10 +140,10 @@ export function Services() {
                 {group.items.map((it) => (
                   <li
                     key={it.label}
-                    className="flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-surface-darker/40 px-3 py-2.5 text-left md:rounded-2xl md:px-4 md:py-3"
+                    className="flex items-baseline justify-between gap-4 rounded-xl border border-white/10 bg-surface-darker/40 px-3 py-2 text-left md:rounded-2xl md:px-4 md:py-2"
                   >
-                    <span className="min-w-0 flex-1 text-sm leading-snug text-white/80">{it.label}</span>
-                    <span className="shrink-0 whitespace-nowrap text-sm font-semibold tabular-nums text-white">
+                    <span className="min-w-0 flex-1 text-sm leading-snug text-white/75">{it.label}</span>
+                    <span className="shrink-0 whitespace-nowrap text-sm font-medium tabular-nums text-white">
                       {it.priceRub}
                     </span>
                   </li>

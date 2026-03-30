@@ -222,9 +222,9 @@ export function Hero() {
               </motion.div>
             </motion.div>
           </div>
-          <div className="relative z-[4] flex w-full min-w-0 flex-1 flex-col items-stretch text-left md:self-end md:-translate-y-[2cm]">
+          <div className="relative z-[4] flex w-full min-w-0 max-w-2xl flex-1 flex-col items-stretch text-left md:self-end md:-translate-y-[2cm]">
             <motion.p
-              className="sectionOverline mb-5 text-orange-300/90 md:mb-6"
+              className="sectionOverline mb-0 text-orange-300/90"
               initial={reduced ? false : { opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={t}
@@ -233,7 +233,7 @@ export function Hero() {
             </motion.p>
 
             <motion.p
-              className="mb-5 max-w-prose text-sm leading-relaxed text-white/90 md:mb-6 md:max-w-none md:text-base md:leading-relaxed"
+              className="mt-3 mb-5 max-w-2xl text-sm leading-relaxed text-white/90 md:mt-4 md:mb-5 md:text-base md:leading-relaxed lg:mb-6"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.08 }}
@@ -242,7 +242,7 @@ export function Hero() {
             </motion.p>
 
             <motion.ul
-              className="mb-5 flex flex-col gap-3 text-sm text-white/80 md:mb-6 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2.5 md:text-[15px]"
+              className="mb-5 flex max-w-2xl flex-col gap-3 text-sm text-white/80 md:mb-6 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2.5 md:text-[15px]"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.1 }}
@@ -259,17 +259,17 @@ export function Hero() {
             </motion.ul>
 
             <motion.div
-              className="mb-5 flex w-full max-w-full flex-wrap gap-x-8 gap-y-4 rounded-xl border border-white/12 bg-black/35 p-4 backdrop-blur-[6px] md:mb-6 md:justify-start"
+              className="mb-0 flex w-full max-w-2xl flex-wrap items-end gap-4 rounded-xl border border-white/12 bg-black/35 p-4 backdrop-blur-[6px] md:gap-6"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.12 }}
             >
               {hero.priceHints.map((p) => (
-                <div key={p.label} className="min-w-[5.5rem]">
-                  <div className="text-[10px] font-medium uppercase tracking-[0.12em] text-white/55 md:text-[11px]">
+                <div key={p.label} className="flex min-h-[5.5rem] min-w-[5.5rem] flex-col justify-end md:min-h-[6rem]">
+                  <div className="font-[var(--font-heading)] text-[10px] uppercase tracking-[0.12em] text-white/55 md:text-[11px]">
                     {p.label}
                   </div>
-                  <div className="font-[var(--font-heading)] text-base text-white tabular-nums md:text-lg">
+                  <div className="mt-1 font-[var(--font-heading)] text-base tabular-nums text-white md:text-lg">
                     {p.value}
                   </div>
                 </div>
@@ -277,14 +277,14 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              className="flex w-full justify-start"
+              className="mt-8 flex w-full justify-start md:mt-10"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.14 }}
             >
               <a
                 href="#services"
-                className="press-flame-ghost inline-flex w-full items-center justify-center rounded-2xl border border-white/18 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-white/92 transition hover:border-orange-400/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/50 sm:w-auto md:text-[15px]"
+                className="press-flame-ghost inline-flex w-full items-center justify-center rounded-2xl border border-white/18 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white/92 transition hover:border-orange-400/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/50 sm:w-auto md:text-[15px]"
               >
                 {hero.ctaSecondary}
               </a>

@@ -32,12 +32,12 @@ export function Pricing() {
           <div className="min-w-0">
             <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">Цены</h2>
             <SectionHeadingAccent />
-            <p className="mt-3 max-w-3xl text-base leading-relaxed text-ink/70">
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink/70">
               Ключевые позиции или полный прайс-лист — переключайте вкладку. Точный объём и стоимость
               определяются после диагностики и согласования.
             </p>
             <div
-              className="mt-6 flex flex-wrap gap-2"
+              className="mt-6 flex flex-wrap items-center gap-1"
               role="tablist"
               aria-label="Режим отображения цен"
             >
@@ -47,7 +47,7 @@ export function Pricing() {
                 aria-selected={tab === "key"}
                 onClick={() => setTab("key")}
                 className={[
-                  "rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
+                  "inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
                   tab === "key"
                     ? "bg-brand-amber text-ink"
                     : "border border-black/15 bg-white/80 text-ink/80 hover:border-black/25 hover:text-ink",
@@ -61,7 +61,7 @@ export function Pricing() {
                 aria-selected={tab === "full"}
                 onClick={() => setTab("full")}
                 className={[
-                  "rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
+                  "inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
                   tab === "full"
                     ? "bg-brand-amber text-ink"
                     : "border border-black/15 bg-white/80 text-ink/80 hover:border-black/25 hover:text-ink",
@@ -80,7 +80,7 @@ export function Pricing() {
         </div>
 
         {tab === "key" && (
-          <div className="mt-10 grid items-start gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pricingCards.map((c, i) => (
               <motion.div
                 key={c.title}
@@ -89,13 +89,15 @@ export function Pricing() {
                 whileInView={reduced ? undefined : { opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={reduced ? undefined : { duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
-                className="group rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,.055)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(0,0,0,.09)] md:rounded-3xl md:p-5"
+                className="group flex h-full flex-col justify-between rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,.055)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(0,0,0,.09)] md:rounded-3xl md:p-5"
               >
-                <div className="text-base font-semibold leading-snug">{c.title}</div>
-                <div className="mt-2 font-[var(--font-heading)] text-2xl tracking-wide text-ink md:text-3xl">
-                  {c.priceRub}
+                <div>
+                  <div className="text-base font-medium leading-snug text-ink">{c.title}</div>
+                  <div className="mt-2 font-[var(--font-heading)] text-2xl tabular-nums tracking-wide text-ink md:text-3xl">
+                    {c.priceRub}
+                  </div>
                 </div>
-                <div className="mt-2 text-sm leading-relaxed text-ink/70">{c.note}</div>
+                <div className="mt-2 text-xs leading-relaxed text-ink/55">{c.note}</div>
               </motion.div>
             ))}
           </div>
@@ -162,11 +164,11 @@ export function Pricing() {
                                   {label}
                                 </div>
                               ) : (
-                                <div className="group flex flex-col gap-1 px-4 py-3 transition-colors hover:bg-gradient-to-r hover:from-brand-amber/[0.06] hover:to-transparent sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 md:px-5 md:py-3.5">
+                                <div className="group flex flex-col gap-1 px-4 py-2 transition-colors hover:bg-gradient-to-r hover:from-brand-amber/[0.06] hover:to-transparent sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 md:px-5 md:py-2">
                                   <span className="min-w-0 flex-1 text-sm leading-snug text-ink/88 md:text-[15px]">
                                     {label}
                                   </span>
-                                  <span className="shrink-0 font-[var(--font-heading)] text-sm tabular-nums tracking-wide text-ink sm:text-right md:text-base">
+                                  <span className="shrink-0 text-sm font-medium tabular-nums tracking-wide text-ink sm:text-right md:text-base">
                                     {price}
                                   </span>
                                 </div>

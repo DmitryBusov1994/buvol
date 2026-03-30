@@ -38,7 +38,7 @@ function FaqRow({
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
       >
-        <span className="text-sm font-semibold text-white md:text-base">{question}</span>
+        <span className="text-base font-medium text-white">{question}</span>
         <span
           aria-hidden="true"
           className={[
@@ -58,7 +58,7 @@ function FaqRow({
           open ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr] pb-0",
         ].join(" ")}
       >
-        <div className="min-h-0 text-sm leading-relaxed text-white/70">{answer}</div>
+        <div className="min-h-0 pb-4 text-sm leading-relaxed text-white/70">{answer}</div>
       </div>
     </motion.div>
   );
@@ -78,7 +78,7 @@ export function FAQ() {
           <SectionHeadingAccent />
         </div>
 
-        <div className="mt-8 grid gap-3 md:mt-10">
+        <div className="mx-auto mt-8 grid max-w-2xl gap-3 md:mt-10">
           {faq.map((f, i) => (
             <FaqRow
               key={f.question}
