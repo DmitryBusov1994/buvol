@@ -129,7 +129,7 @@ export function Hero() {
                 }
               >
                 <Image
-                  src={publicAsset("/hero-logo.jpg")}
+                  src={publicAsset("/hero-logo.png")}
                   alt="Буйвол Мотор — логотип"
                   width={1024}
                   height={1024}

@@ -1,25 +1,31 @@
 /**
- * Убирает сплошной чёрный/тёмный фон у public/hero-logo.jpg: обход с краёв (BFS),
- * чтобы внутренний силуэт (бык, шестерня), не связанный с краем, сохранился.
- * Фон hero (#0e0e10 и градиенты) становится виден «сквозь» прозрачность.
+ * Делает фон hero-логотипа прозрачным (как раньше для PNG без «шахматки»/заливки).
+ *
+ * 1) Глобально: нейтральная серая «матовая» подложка и шахматка (низкий chroma),
+ *    светлые клетки — как в patch-hero-logo.cjs, чуть мягче под JPEG.
+ * 2) С краёв (BFS): оставшийся тёмный фон, связанный с границей кадра.
+ *
+ * Читает public/hero-logo.jpg (исходник), пишет public/hero-logo.png.
  * Запуск: node scripts/patch-hero-logo-bg.cjs
  */
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const input = path.join(__dirname, "..", "public", "hero-logo.jpg");
-const tmp = input + ".tmp.png";
+const inputJpg = path.join(__dirname, "..", "public", "hero-logo.jpg");
+const outputPng = path.join(__dirname, "..", "public", "hero-logo.png");
+const tmp = outputPng + ".tmp.png";
 
-function isBgPixel(r, g, b) {
+function isEdgeBgPixel(r, g, b) {
   const v = (r + g + b) / 3;
   const chroma = Math.max(r, g, b) - Math.min(r, g, b);
-  return chroma <= 28 && v <= 52;
+  return chroma <= 26 && v <= 58;
 }
 
 (async () => {
+  const input = fs.existsSync(inputJpg) ? inputJpg : outputPng;
   if (!fs.existsSync(input)) {
-    console.error("Нет файла:", input);
+    console.error("Нет файла:", inputJpg, "или", outputPng);
     process.exit(1);
   }
 
@@ -27,9 +33,32 @@ function isBgPixel(r, g, b) {
   const w = info.width;
   const h = info.height;
   const n = w * h;
+
+  const fromRasterSource = input === inputJpg || /\.jpe?g$/i.test(input);
+
+  let globalCleared = 0;
+  if (fromRasterSource) {
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      const v = (r + g + b) / 3;
+      const chroma = Math.max(r, g, b) - Math.min(r, g, b);
+
+      const neutral = chroma < 20;
+      const grayMatte = neutral && v >= 18 && v <= 128;
+      const lightMat = v > 198 && chroma < 48;
+      const nearWhite = v > 244 && chroma < 42;
+
+      if (grayMatte || lightMat || nearWhite) {
+        data[i + 3] = 0;
+        globalCleared++;
+      }
+    }
+  }
+
   const seen = new Uint8Array(n);
   const q = [];
-
   const at = (x, y) => (y * w + x) * 4;
   const pi = (x, y) => y * w + x;
 
@@ -37,11 +66,12 @@ function isBgPixel(r, g, b) {
     if (x < 0 || y < 0 || x >= w || y >= h) return;
     const p = pi(x, y);
     if (seen[p]) return;
-    const i = at(x, y);
-    const r = data[i];
-    const g = data[i + 1];
-    const b = data[i + 2];
-    if (!isBgPixel(r, g, b)) return;
+    const j = at(x, y);
+    if (data[j + 3] === 0) return;
+    const r = data[j];
+    const g = data[j + 1];
+    const b = data[j + 2];
+    if (!isEdgeBgPixel(r, g, b)) return;
     seen[p] = 1;
     q.push(p);
   }
@@ -55,15 +85,15 @@ function isBgPixel(r, g, b) {
     enqueue(w - 1, y);
   }
 
-  let cleared = 0;
+  let bfsCleared = 0;
   while (q.length) {
     const p = q.pop();
     const y = Math.floor(p / w);
     const x = p - y * w;
-    const i = at(x, y);
-    if (data[i + 3] === 0) continue;
-    data[i + 3] = 0;
-    cleared++;
+    const j = at(x, y);
+    if (data[j + 3] === 0) continue;
+    data[j + 3] = 0;
+    bfsCleared++;
 
     enqueue(x + 1, y);
     enqueue(x - 1, y);
@@ -76,11 +106,20 @@ function isBgPixel(r, g, b) {
   })
     .png({ compressionLevel: 9 })
     .toFile(tmp);
-  fs.renameSync(tmp, input);
-  console.log("OK:", w, "x", h, "edge-connected bg pixels cleared:", cleared);
-  if (cleared > n * 0.92) {
-    console.warn("Снято >92% пикселей — проверьте PNG, возможно силуэт сливается с краем.");
-  }
+
+  fs.renameSync(tmp, outputPng);
+  console.log(
+    "OK:",
+    w,
+    "x",
+    h,
+    "→",
+    path.basename(outputPng),
+    "| global:",
+    globalCleared,
+    "bfs:",
+    bfsCleared,
+  );
 })().catch((e) => {
   console.error(e);
   process.exit(1);
