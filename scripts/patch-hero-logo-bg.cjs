@@ -5,13 +5,15 @@
  *    светлые клетки — как в patch-hero-logo.cjs, чуть мягче под JPEG.
  * 2) С краёв (BFS): оставшийся тёмный фон, связанный с границей кадра.
  *
- * Читает public/hero-logo.jpg (исходник), пишет public/hero-logo.png.
+ * Исходник (любой один): public/hero-logo-source.png → public/hero-logo.jpg → иначе доработка готового hero-logo.png.
+ * Результат: public/hero-logo.png (с альфой).
  * Запуск: node scripts/patch-hero-logo-bg.cjs
  */
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
+const inputSourcePng = path.join(__dirname, "..", "public", "hero-logo-source.png");
 const inputJpg = path.join(__dirname, "..", "public", "hero-logo.jpg");
 const outputPng = path.join(__dirname, "..", "public", "hero-logo.png");
 const tmp = outputPng + ".tmp.png";
@@ -23,18 +25,23 @@ function isEdgeBgPixel(r, g, b) {
 }
 
 (async () => {
-  const input = fs.existsSync(inputJpg) ? inputJpg : outputPng;
+  const input = fs.existsSync(inputSourcePng)
+    ? inputSourcePng
+    : fs.existsSync(inputJpg)
+      ? inputJpg
+      : outputPng;
   if (!fs.existsSync(input)) {
-    console.error("Нет файла:", inputJpg, "или", outputPng);
+    console.error("Нет файла:", inputSourcePng, "/", inputJpg, "/", outputPng);
     process.exit(1);
   }
+
+  const fromRasterSource = input !== outputPng;
+  console.log("input:", path.basename(input), fromRasterSource ? "(full pipeline)" : "(edge BFS only)");
 
   const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const w = info.width;
   const h = info.height;
   const n = w * h;
-
-  const fromRasterSource = input === inputJpg || /\.jpe?g$/i.test(input);
 
   let globalCleared = 0;
   if (fromRasterSource) {
