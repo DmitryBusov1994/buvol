@@ -264,7 +264,7 @@ export function Hero() {
             </motion.p>
 
             <motion.ul
-              className="mb-5 flex max-w-2xl flex-col gap-3 text-sm text-white/80 md:mb-6 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2.5 md:text-[15px]"
+              className="mb-0 flex max-w-2xl flex-col gap-3 text-sm text-white/80 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2.5 md:text-[15px]"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.1 }}
@@ -281,32 +281,14 @@ export function Hero() {
             </motion.ul>
 
             <motion.div
-              className="mb-0 flex w-full max-w-2xl flex-wrap items-end gap-4 rounded-xl border border-white/12 bg-black/35 p-3 backdrop-blur-[6px] md:gap-6 md:p-4"
+              className="mt-5 flex w-full max-w-2xl justify-start md:mt-6"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.12 }}
             >
-              {hero.priceHints.map((p) => (
-                <div key={p.label} className="flex shrink-0 flex-col justify-end">
-                  <div className="font-[var(--font-heading)] text-[10px] uppercase tracking-[0.12em] text-white/55 md:text-[11px]">
-                    {p.label}
-                  </div>
-                  <div className="mt-1 font-[var(--font-heading)] text-base tabular-nums text-white md:text-lg">
-                    {p.value}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              className="mt-8 flex w-full justify-start md:mt-10"
-              initial={reduced ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={reduced ? undefined : { duration: 0.3, delay: 0.14 }}
-            >
               <a
                 href="#services"
-                className="press-flame-ghost inline-flex w-full items-center justify-center rounded-2xl border border-white/18 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white/92 transition hover:border-orange-400/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/50 sm:w-auto md:text-[15px]"
+                className="press-flame-ghost inline-flex w-full items-center justify-start rounded-2xl border border-white/18 bg-white/[0.06] px-5 py-3 text-left text-sm font-medium leading-snug text-white/92 transition hover:border-orange-400/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/50 sm:w-auto md:px-6 md:text-[15px]"
               >
                 {hero.ctaSecondary}
               </a>
