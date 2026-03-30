@@ -136,8 +136,8 @@ export function Hero() {
                 <Image
                   src={publicAsset("/hero-logo.png")}
                   alt="Буйвол Мотор — логотип"
-                  width={1024}
-                  height={1024}
+                  width={477}
+                  height={477}
                   priority
                   sizes="(max-width: 767px) 95vw, (max-width: 1200px) 58vw, 680px"
                   className="relative z-[1] h-auto w-full object-contain object-left"

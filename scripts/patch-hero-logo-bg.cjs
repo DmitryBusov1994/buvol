@@ -189,6 +189,18 @@ function expandGridFromEnclosure(vis, data, w, h, ch, jpeg, minNeighbors) {
   }
 
   const jpeg = /\.jpe?g$/i.test(input);
+  const meta = await sharp(input).metadata();
+  /** Уже с альфой (экспорт без «запечённой» сетки) — не гоняем сеточный пайплайн, только пересобираем PNG */
+  if (meta.hasAlpha && !jpeg) {
+    console.log("input:", path.basename(input), "| RGBA → hero-logo.png (без обработки сетки)");
+    await sharp(input)
+      .png({ compressionLevel: 9, effort: 10 })
+      .toFile(tmp);
+    fs.renameSync(tmp, outputPng);
+    console.log("OK:", meta.width, "x", meta.height, "→ hero-logo.png");
+    return;
+  }
+
   console.log("input:", path.basename(input), "| edge flood (checker-like only), RGB unchanged");
 
   const { data: rawIn, info } = await sharp(input).raw().toBuffer({ resolveWithObject: true });
@@ -196,7 +208,7 @@ function expandGridFromEnclosure(vis, data, w, h, ch, jpeg, minNeighbors) {
   const h = info.height;
   const ch = info.channels;
   if (ch !== 3) {
-    console.error("Ожидается RGB (3 канала), получено:", ch);
+    console.error("Ожидается RGB (3 канала) для снятия сетки, получено:", ch);
     process.exit(1);
   }
 
