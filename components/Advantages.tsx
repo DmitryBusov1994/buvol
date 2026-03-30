@@ -27,7 +27,7 @@ export function Advantages() {
           </a>
         </div>
 
-        <div className="mt-10 grid items-start gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
           {advantages.map((a, i) => (
             <motion.div
               key={a.title}
@@ -36,12 +36,12 @@ export function Advantages() {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, amount: 0.2 }}
               variants={revealVariants}
-              className="flex flex-col rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,.055)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(0,0,0,.09)] md:rounded-3xl md:p-5"
+              className="flex h-full min-h-[260px] flex-col rounded-2xl border border-black/10 bg-white p-4 shadow-[0_16px_40px_rgba(0,0,0,.055)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(0,0,0,.09)] md:min-h-[280px] md:rounded-3xl md:p-5 lg:min-h-[300px]"
             >
-              <div className="font-[var(--font-heading)] text-lg tracking-wide leading-snug md:text-xl">
+              <div className="shrink-0 font-[var(--font-heading)] text-lg tracking-wide leading-snug md:text-xl">
                 {a.title}
               </div>
-              <div className="mt-2 text-sm leading-relaxed text-ink/70">{a.text}</div>
+              <div className="mt-2 flex-1 text-sm leading-relaxed text-ink/70">{a.text}</div>
             </motion.div>
           ))}
         </div>
