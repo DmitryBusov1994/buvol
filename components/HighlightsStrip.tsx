@@ -1,5 +1,6 @@
 "use client";
 
+import { HighlightsAtmosphere } from "@/components/HighlightsAtmosphere";
 import { strengths } from "@/content/siteContent";
 import { motion } from "framer-motion";
 import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
@@ -29,8 +30,9 @@ export function HighlightsStrip() {
         aria-hidden
         className="absolute inset-0 z-[2] bg-gradient-to-t from-[#0e0e10] via-transparent to-[#0e0e10]/50"
       />
+      <HighlightsAtmosphere />
 
-      <div className="relative z-[3] layout-container section-y-compact">
+      <div className="relative z-[10] layout-container section-y-compact">
         <div className="grid items-start gap-3 md:grid-cols-3">
           {top.map((s, i) => (
             <motion.div
@@ -40,7 +42,7 @@ export function HighlightsStrip() {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, amount: 0.3 }}
               variants={revealVariants}
-              className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-4 text-left shadow-[0_12px_40px_rgba(0,0,0,.35)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:rounded-3xl md:p-5"
+              className="relative z-[1] flex flex-col rounded-2xl border border-white/10 bg-white/5 p-4 text-left shadow-[0_12px_40px_rgba(0,0,0,.35)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:rounded-3xl md:p-5"
             >
               <div className="font-[var(--font-heading)] text-lg leading-snug tracking-wide text-white md:text-xl">
                 {s.title}
