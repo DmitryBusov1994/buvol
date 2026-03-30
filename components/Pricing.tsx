@@ -147,7 +147,7 @@ export function Pricing() {
                                 key={row.line}
                                 className="px-4 py-5 text-center md:px-6 md:py-6"
                               >
-                                <p className="sectionOverline text-ink/55">Буйвол Моторс</p>
+                                <p className="sectionOverline text-ink/55">Буйвол Мотор</p>
                                 <p className="mt-2 text-sm font-medium italic leading-relaxed text-ink/70 md:text-[15px]">
                                   {label}
                                 </p>

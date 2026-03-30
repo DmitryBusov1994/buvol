@@ -119,15 +119,24 @@ export function Hero() {
                     }
               }
             >
-              <Image
-                src={publicAsset("/hero-logo.png")}
-                alt="Буйвол Моторс"
-                width={5040}
-                height={5040}
-                priority
-                sizes="(max-width: 767px) 95vw, (max-width: 1200px) 58vw, 680px"
-                className="relative z-[1] h-auto w-full object-contain object-left"
-              />
+              <motion.div
+                className="relative w-full"
+                animate={reduced ? undefined : { scale: [1, 1.014, 1] }}
+                transition={
+                  reduced
+                    ? undefined
+                    : { duration: 4.2, repeat: Infinity, ease: "easeInOut" }
+                }
+              >
+                <Image
+                  src={publicAsset("/hero-logo.jpg")}
+                  alt="Буйвол Мотор — логотип"
+                  width={1024}
+                  height={1024}
+                  priority
+                  sizes="(max-width: 767px) 95vw, (max-width: 1200px) 58vw, 680px"
+                  className="relative z-[1] h-auto w-full object-contain object-left"
+                />
               {/* Пар: столб вниз от ноздрей */}
               {!reduced && (
                 <>
@@ -210,6 +219,7 @@ export function Hero() {
                   </div>
                 </>
               )}
+              </motion.div>
             </motion.div>
           </div>
           <div className="relative z-[4] flex w-full min-w-0 flex-1 flex-col items-stretch text-left md:self-end md:-translate-y-[2cm]">

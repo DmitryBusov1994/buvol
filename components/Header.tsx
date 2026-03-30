@@ -72,7 +72,7 @@ export function Header() {
         <a href="#hero" className="group min-w-0 leading-tight transition-opacity hover:opacity-95">
           <div className="logo-header-brand">
             <span className="logo-header-word-top">БУЙВОЛ</span>
-            <span className="logo-header-word-bottom">МОТОРС</span>
+            <span className="logo-header-word-bottom">МОТОР</span>
           </div>
           <div className="text-xs text-orange-200/75">Екатеринбург • грузовая техника</div>
         </a>

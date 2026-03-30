@@ -1,5 +1,5 @@
 /**
- * Убирает сплошной чёрный/тёмный фон у public/hero-logo.png: обход с краёв (BFS),
+ * Убирает сплошной чёрный/тёмный фон у public/hero-logo.jpg: обход с краёв (BFS),
  * чтобы внутренний силуэт (бык, шестерня), не связанный с краем, сохранился.
  * Фон hero (#0e0e10 и градиенты) становится виден «сквозь» прозрачность.
  * Запуск: node scripts/patch-hero-logo-bg.cjs
@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
-const input = path.join(__dirname, "..", "public", "hero-logo.png");
+const input = path.join(__dirname, "..", "public", "hero-logo.jpg");
 const tmp = input + ".tmp.png";
 
 function isBgPixel(r, g, b) {

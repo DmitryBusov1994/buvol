@@ -9,7 +9,7 @@ export function Footer({ className = "" }: { className?: string }) {
           >
             <div className="logo-header-brand">
               <span className="logo-header-word-top">БУЙВОЛ</span>
-              <span className="logo-header-word-bottom">МОТОРС</span>
+              <span className="logo-header-word-bottom">МОТОР</span>
             </div>
             <div className="text-xs text-orange-200/75">
               Екатеринбург • ремонт и ТО грузовой техники

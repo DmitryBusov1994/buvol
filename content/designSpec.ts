@@ -37,12 +37,12 @@ export const designSpec = {
         "В Figma: фрейм 1440 → вложенный auto layout max 1200, padding H 48 (или поля 120 без внутреннего padding). Сетка 12 кол., gap 24.",
       /**
        * Hero (#hero): две колонки flex, flex:1, gap 48px, md:flex-row / мобиле column.
-       * Логотип: public/hero-logo.png, крупная ширина (до ~680px lg), пар вниз от ноздрей, parallax от курсора; md: нижний край логотипа = нижний край правой колонки (items-end), блок контента чуть ниже (больший pt контейнера).
+       * Логотип: public/hero-logo.jpg, крупная ширина (до ~680px lg), пар вниз от ноздрей, лёгкий scale «дыхание», parallax от курсора; md: нижний край логотипа = нижний край правой колонки (items-end), блок контента чуть ниже (больший pt контейнера).
        */
       heroContent: {
         layout: "flex",
         gapPx: 48,
-        logoAsset: "/hero-logo.png",
+        logoAsset: "/hero-logo.jpg",
         copy: {
           note: "Правая колонка z-[4], md:items-start, md:pt для выравнивания с крупным логотипом",
         },

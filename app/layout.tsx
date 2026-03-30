@@ -7,9 +7,9 @@ const googleFontsHref =
   "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Russo+One&display=swap&subset=cyrillic,cyrillic-ext,latin,latin-ext";
 
 export const metadata: Metadata = {
-  title: "Буйвол Моторс — ремонт и ТО грузовой техники в Екатеринбурге",
+  title: "Буйвол Мотор — ремонт и ТО грузовой техники в Екатеринбурге",
   description:
-    "СТО «Буйвол Моторс»: ремонт и техническое обслуживание тягачей, самосвалов, фургонов и спецтехники. Диагностика, ДВС, КПП, тормоза, подвеска, рулевое.",
+    "СТО «Буйвол Мотор»: ремонт и техническое обслуживание тягачей, самосвалов, фургонов и спецтехники. Диагностика, ДВС, КПП, тормоза, подвеска, рулевое.",
   icons: {
     icon: [{ url: publicAsset("/icon.svg"), type: "image/svg+xml" }],
   },
