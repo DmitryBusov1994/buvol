@@ -6,6 +6,7 @@ import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { leftSlideVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
 
 function FaqRow({ idx, question, answer }: { idx: number; question: string; answer: string }) {
   const reduced = usePrefersReducedMotion();
@@ -63,7 +64,7 @@ export function FAQ() {
     <Section id="faq" className="relative overflow-x-clip bg-surface-light text-ink industrialStripes">
       {/* eslint-disable-next-line @next/next/no-img-element -- декоративный фон, маска + opacity, не LCP */}
       <img
-        src="/faq_price_v2.png"
+        src={publicAsset("/faq_price_v2.png")}
         alt=""
         className="faq-decor-img hidden md:block"
         width={420}
