@@ -1,11 +1,17 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useState, type CSSProperties } from "react";
 import { faq } from "@/content/siteContent";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { leftSlideVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
+
+const faqChainVars = {
+  "--faq-chain-h": `url("${publicAsset("/images/chain_h_web.png")}")`,
+  "--faq-chain-v": `url("${publicAsset("/images/chain_v_web.png")}")`,
+} as CSSProperties;
 
 function FaqRow({ idx, question, answer }: { idx: number; question: string; answer: string }) {
   const reduced = usePrefersReducedMotion();
@@ -60,8 +66,24 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
 
 export function FAQ() {
   return (
-    <Section id="faq" className="relative bg-surface-light text-ink industrialStripes">
-      <div className="layout-container section-y-compact">
+    <Section
+      id="faq"
+      className="relative overflow-x-clip overflow-y-visible bg-surface-light text-ink industrialStripes"
+      style={faqChainVars}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element -- декор, не LCP */}
+      <img
+        src={publicAsset("/images/buffalo_chains.png")}
+        alt=""
+        aria-hidden
+        className="faq-buffalo"
+        width={380}
+        decoding="async"
+      />
+      <div className="faq-chain-top" aria-hidden="true" />
+      <div className="faq-chain-bottom" aria-hidden="true" />
+      <div className="faq-chain-left" aria-hidden="true" />
+      <div className="layout-container section-y-compact relative z-[1]">
         <div className="w-full max-w-2xl text-left">
           <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
             FAQ
