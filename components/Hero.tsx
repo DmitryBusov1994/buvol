@@ -34,6 +34,13 @@ const STEAM_RIGHT = {
   rotate: [0, 3.5, 0],
 };
 
+/** «СТО … · Город» → две строки для иерархии H1 */
+function splitHeroOverline(overline: string): { main: string; city?: string } {
+  const parts = overline.split(/\s*·\s*/).map((s) => s.trim());
+  if (parts.length >= 2) return { main: parts[0]!, city: parts.slice(1).join(" · ") };
+  return { main: overline };
+}
+
 export function Hero() {
   const reduced = usePrefersReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -64,6 +71,7 @@ export function Hero() {
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1200], [0, 360]);
   const t = reduced ? { duration: 0 } : { duration: 0.35, ease: "easeOut" as const };
+  const heroTitle = splitHeroOverline(hero.overline);
 
   return (
     <section
@@ -236,17 +244,26 @@ export function Hero() {
             </motion.div>
           </div>
           <div className="relative z-[4] flex w-full min-w-0 max-w-2xl flex-1 flex-col items-stretch text-left">
-            <motion.p
-              className="sectionOverline mb-0 text-orange-300/90"
-              initial={reduced ? false : { opacity: 0, y: 6 }}
+            <motion.h1
+              className="font-[var(--font-heading)] mb-4 text-xl uppercase leading-[1.08] tracking-[0.06em] text-brand-amber sm:mb-5 sm:text-2xl lg:mb-6 lg:text-3xl xl:text-4xl"
+              initial={reduced ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={t}
             >
-              {hero.overline}
-            </motion.p>
+              {heroTitle.city ? (
+                <>
+                  {heroTitle.main}
+                  <span className="mt-1 block text-lg tracking-[0.08em] text-orange-200/85 sm:mt-1.5 sm:text-xl lg:text-2xl">
+                    {heroTitle.city}
+                  </span>
+                </>
+              ) : (
+                heroTitle.main
+              )}
+            </motion.h1>
 
             <motion.p
-              className="mt-3 mb-5 max-w-2xl text-sm leading-relaxed text-white/90 md:mt-4 md:mb-5 md:text-base md:leading-relaxed lg:mb-6"
+              className="mb-5 max-w-xl text-base leading-relaxed text-white/90 sm:mb-5 sm:text-lg md:mb-6 lg:text-xl"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.08 }}
