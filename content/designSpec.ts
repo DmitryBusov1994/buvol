@@ -52,7 +52,7 @@ export const designSpec = {
       },
       sectionRhythm: {
         note:
-          "Главная: Hero тёмн. → Highlights (3 карточки) тёмн. → Услуги светл. → Кому помогаем тёмн. → Преимущества светл. → Как работаем тёмн. → FAQ светл. → Контакты тёмн. (форма на белой карточке).",
+          "Главная: Hero тёмн. → Highlights тёмн. → Услуги светл. → Кому помогаем тёмн. → Преимущества светл. → Как работаем тёмн. → FAQ светл. → Контакты тёмн. Фото-фоны: hero_bg_v1_metal.webp (Hero, Highlights, #who, #process), light_bg_v4_gears.webp (#services, #advantages, #faq); пересборка: npm run optimize:images.",
       },
     },
     desktopColumns: { services: 3, advantages: 3 },

@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useId, useState } from "react";
 import { faq } from "@/content/siteContent";
 import { Section } from "@/components/Section";
@@ -7,6 +8,10 @@ import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { leftSlideVariants, usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
+
+const faqBgStyle = {
+  ["--section-bg-photo" as string]: `url("${publicAsset("/images/light_bg_v4_gears.webp")}")`,
+} as CSSProperties;
 
 function FaqRow({ idx, question, answer }: { idx: number; question: string; answer: string }) {
   const reduced = usePrefersReducedMotion();
@@ -61,7 +66,7 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
 
 export function FAQ() {
   return (
-    <Section id="faq" className="bg-surface-light text-ink industrialStripes">
+    <Section id="faq" className="bg-surface-light text-ink section-bg-photo-cover" style={faqBgStyle}>
       <div className="faq-buffalo-wrap" aria-hidden="true">
         <picture>
           <source type="image/webp" srcSet={publicAsset("/images/faq_buffalo_simple.webp")} />

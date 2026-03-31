@@ -75,13 +75,13 @@ export function Hero() {
       onPointerCancel={resetLogoParallax}
     >
       <motion.div
-        className="heroBackdrop absolute inset-0 z-0 bg-hero-truck bg-hero-radial"
-        style={reduced ? undefined : { y: bgY }}
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url("${publicAsset("/images/hero_bg_v1_metal.webp")}")`,
+          ...(reduced ? undefined : { y: bgY }),
+        }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 z-0 gearPattern opacity-80" aria-hidden="true" />
-      <div className="absolute inset-0 z-0 industrialStripes opacity-40" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 z-0 noiseOverlay" aria-hidden="true" />
       <div className="spark-container z-[1]" aria-hidden="true" />
       <div
         aria-hidden="true"

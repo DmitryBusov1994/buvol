@@ -7,6 +7,7 @@
  * — texture_sparks_smoke, decor_gears_fire_side: длинная сторона ≤800
  * — decor_gears_fire_side_mirrored: flop от обработанного decor (исходный mirrored.png не читаем)
  * — faq_buffalo_simple: ширина ≤900
+ * — hero_bg_v1_metal, light_bg_v4_gears: ширина ≤1920 (фоны секций)
  * — hero-logo-source.png → hero-logo.webp (q88), перезапись hero-logo-source.png и hero-logo.png сжатыми 500×500 inside
  */
 import sharp from "sharp";
@@ -76,6 +77,15 @@ async function run() {
     await sharp(buf).webp({ quality: webpQ, effort: 4, alphaQuality: 90 }).toFile(path.join(imgDir, "decor_gears_fire_side_mirrored.webp"));
     await sharp(buf).png({ compressionLevel: 9, effort: 10 }).toFile(path.join(imgDir, "decor_gears_fire_side_mirrored.png"));
     console.log("OK: decor_gears_fire_side_mirrored ← flop(decor_gears_fire_side) optimized");
+  }
+
+  // --- Секционные фоны (hero / светлые блоки) ---
+  for (const base of ["hero_bg_v1_metal", "light_bg_v4_gears"]) {
+    const input = path.join(imgDir, `${base}.png`);
+    if (!fs.existsSync(input)) continue;
+    const p = sharp(input).resize(1920, null, { fit: "inside", withoutEnlargement: true });
+    await toWebpPng(p, path.join(imgDir, base));
+    console.log("OK:", base, "→ webp + png (≤1920w)");
   }
 
   // --- FAQ buffalo ---

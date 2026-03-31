@@ -12,6 +12,7 @@ import { publicAsset } from "@/lib/publicPath";
 const servicesDecoStyle = {
   "--services-sparks-texture": `url("${publicAsset("/images/texture_sparks_smoke.webp")}")`,
   "--services-gears-deco-mirrored": `url("${publicAsset("/images/decor_gears_fire_side_mirrored.webp")}")`,
+  ["--section-bg-photo" as string]: `url("${publicAsset("/images/light_bg_v4_gears.webp")}")`,
 } as CSSProperties;
 
 function ServiceItems({ groupId }: { groupId: string }) {
@@ -88,7 +89,7 @@ export function Services() {
   return (
     <Section
       id="services"
-      className="relative bg-surface-light text-ink industrialStripes"
+      className="relative bg-surface-light text-ink section-bg-photo-cover"
       style={servicesDecoStyle}
     >
       <div className="spark-container" aria-hidden="true" />

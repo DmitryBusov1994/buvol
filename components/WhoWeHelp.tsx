@@ -1,18 +1,22 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { audience } from "@/content/siteContent";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { diagonalVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
+
+const whoBgStyle = {
+  ["--section-bg-photo" as string]: `url("${publicAsset("/images/hero_bg_v1_metal.webp")}")`,
+} as CSSProperties;
 
 export function WhoWeHelp() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <Section id="who" className="relative bg-surface-dark">
-      <div className="absolute inset-0 gearPattern opacity-40" />
-      <div className="noiseOverlay" />
+    <Section id="who" className="relative bg-surface-dark section-bg-photo-cover" style={whoBgStyle}>
       <div className="relative layout-container section-y-default">
         <div className="flex items-start justify-between gap-6">
           <div>

@@ -1,19 +1,23 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { howWeWork } from "@/content/siteContent";
 import { HOW_WE_WORK_STEP_ICONS } from "@/lib/howWeWorkStepIcons";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
+
+const processBgStyle = {
+  ["--section-bg-photo" as string]: `url("${publicAsset("/images/hero_bg_v1_metal.webp")}")`,
+} as CSSProperties;
 
 export function HowWeWork() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <Section id="process" className="relative bg-surface-dark">
-      <div className="absolute inset-0 gearPattern opacity-40" />
-      <div className="noiseOverlay" />
+    <Section id="process" className="relative bg-surface-dark section-bg-photo-cover" style={processBgStyle}>
       <div className="spark-container" aria-hidden="true" />
 
       <div className="relative z-[1] layout-container section-y-spacious">

@@ -10,6 +10,7 @@ import { publicAsset } from "@/lib/publicPath";
 
 const advantagesDecoStyle = {
   "--advantages-gears-deco": `url("${publicAsset("/images/decor_gears_fire_side.webp")}")`,
+  ["--section-bg-photo" as string]: `url("${publicAsset("/images/light_bg_v4_gears.webp")}")`,
 } as CSSProperties;
 
 export function Advantages() {
@@ -18,7 +19,7 @@ export function Advantages() {
   return (
     <Section
       id="advantages"
-      className="relative bg-surface-light text-ink industrialStripes"
+      className="relative bg-surface-light text-ink section-bg-photo-cover"
       style={advantagesDecoStyle}
     >
       <div className="layout-container section-y-default">

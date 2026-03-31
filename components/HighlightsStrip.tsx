@@ -4,20 +4,20 @@ import { HighlightsAtmosphere } from "@/components/HighlightsAtmosphere";
 import { strengths } from "@/content/siteContent";
 import { motion } from "framer-motion";
 import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
 
-/**
- * Визуально продолжает Hero: тот же базовый фон #0e0e10, gearPattern, industrialStripes,
- * шум и градиенты — без truck backdrop и без parallax.
- */
+/** Визуально продолжает Hero: тот же фон hero_bg_v1_metal + градиенты поверх. */
 export function HighlightsStrip() {
   const reduced = usePrefersReducedMotion();
   const top = strengths.slice(0, 3);
 
   return (
     <section aria-label="Ключевые преимущества" className="relative overflow-hidden bg-[#0e0e10] text-white">
-      <div className="absolute inset-0 z-0 gearPattern opacity-80" aria-hidden />
-      <div className="absolute inset-0 z-0 industrialStripes opacity-40" aria-hidden />
-      <div className="pointer-events-none absolute inset-0 z-0 noiseOverlay" aria-hidden />
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url("${publicAsset("/images/hero_bg_v1_metal.webp")}")` }}
+        aria-hidden
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_72%_28%,rgba(255,255,255,.14),transparent_38%)]"
