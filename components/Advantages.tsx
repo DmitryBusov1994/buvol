@@ -1,16 +1,27 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { advantages } from "@/content/siteContent";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
+
+const advantagesDecoStyle = {
+  "--advantages-gears-deco": `url("${publicAsset("/images/decor_gears_fire_side.png")}")`,
+} as CSSProperties;
 
 export function Advantages() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <Section id="advantages" className="relative bg-surface-light text-ink industrialStripes">
+    <Section
+      id="advantages"
+      className="relative bg-surface-light text-ink industrialStripes"
+      style={advantagesDecoStyle}
+    >
+      <div className="steam-effect" aria-hidden="true" />
       <div className="layout-container section-y-default">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div className="min-w-0">

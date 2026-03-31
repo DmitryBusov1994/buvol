@@ -82,7 +82,7 @@ export function LeadRequestForm({
       <button
         type="button"
         className={[
-          "press-flame inline-flex w-full items-center justify-center rounded-xl bg-brand-red text-sm font-semibold text-white shadow-[0_0_0_1px_rgba(255,120,40,.2),0_8px_28px_rgba(192,57,43,.3)] transition hover:scale-[1.02] hover:bg-[#b4362a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/75 md:w-auto",
+          "cta-button press-flame inline-flex w-full items-center justify-center rounded-xl bg-brand-red text-sm font-semibold text-white shadow-[0_0_0_1px_rgba(255,120,40,.2),0_8px_28px_rgba(192,57,43,.3)] transition hover:scale-[1.02] hover:bg-[#b4362a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/75 md:w-auto",
           compact ? "mt-1 h-11 px-6 py-3" : "mt-2 h-12 rounded-2xl px-6 hover:scale-[1.03]",
         ].join(" ")}
       >

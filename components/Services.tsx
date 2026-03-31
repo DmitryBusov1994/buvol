@@ -1,12 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { FullPricelistPanel } from "@/components/FullPricelistPanel";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { services } from "@/content/siteContent";
 import { motion } from "framer-motion";
 import { revealVariants, rotateInVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
+
+const servicesDecoStyle = {
+  "--services-sparks-texture": `url("${publicAsset("/images/texture_sparks_smoke.png")}")`,
+} as CSSProperties;
 
 function ServiceItems({ groupId }: { groupId: string }) {
   const group = services.find((s) => s.id === groupId) ?? services[0];
@@ -80,7 +85,12 @@ export function Services() {
   );
 
   return (
-    <Section id="services" className="relative bg-surface-light text-ink industrialStripes">
+    <Section
+      id="services"
+      className="relative bg-surface-light text-ink industrialStripes"
+      style={servicesDecoStyle}
+    >
+      <div className="spark-container" aria-hidden="true" />
       <div className="layout-container section-y-spacious">
         <div className="flex items-start justify-between gap-6">
           <div>

@@ -1,17 +1,23 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { contacts, leadForm } from "@/content/siteContent";
 import { LeadRequestForm } from "@/components/LeadRequestForm";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
+import { publicAsset } from "@/lib/publicPath";
+
+const contactsDecoStyle = {
+  "--contacts-garage-bg": `url("${publicAsset("/images/bg_contact_garage.png")}")`,
+} as CSSProperties;
 
 export function Contacts() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <Section id="contacts" className="relative bg-surface-dark">
+    <Section id="contacts" className="relative bg-surface-dark" style={contactsDecoStyle}>
       <div className="absolute inset-0 gearPattern opacity-40" />
       <div className="noiseOverlay" />
       <div className="relative layout-container section-y-spacious">

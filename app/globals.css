@@ -152,33 +152,315 @@ h3 {
   );
 }
 
-/* FAQ: композиция буйвол+цепи (--faq-composition-bg задаётся в компоненте через publicAsset) */
+/* Услуги — текстура искр (--services-sparks-texture из компонента) */
+#services {
+  position: relative;
+}
+
+#services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--services-sparks-texture);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+#services .layout-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Преимущества — шестерни по бокам (--advantages-gears-deco) */
+#advantages {
+  position: relative;
+  overflow: hidden;
+}
+
+#advantages::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background-image: var(--advantages-gears-deco);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#advantages::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background-image: var(--advantages-gears-deco);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+  transform: scaleX(-1);
+}
+
+#advantages .layout-container {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  #advantages::before,
+  #advantages::after {
+    display: none;
+  }
+}
+
+/* Контакты — фон гаража (--contacts-garage-bg) */
+#contacts {
+  position: relative;
+}
+
+#contacts::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--contacts-garage-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#contacts > .gearPattern,
+#contacts > .noiseOverlay {
+  z-index: 1;
+}
+
+#contacts .layout-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* FAQ — буйвол справа */
 #faq {
   position: relative;
   overflow-x: clip;
 }
 
-#faq::after {
-  content: "";
+.faq-buffalo-decor {
   position: absolute;
-  inset: -20px;
-  background-image: var(--faq-composition-bg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  right: -3%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(400px, 35vw);
+  height: auto;
+  z-index: 0;
   pointer-events: none;
-  z-index: 2;
-  opacity: 0.85;
+  mask-image: radial-gradient(
+    ellipse 80% 80% at 70% 50%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    transparent 95%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 80% at 70% 50%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.2) 70%,
+    transparent 95%
+  );
 }
 
 #faq .layout-container {
   position: relative;
-  z-index: 3;
+  z-index: 1;
 }
 
 @media (max-width: 767px) {
-  #faq::after {
+  .faq-buffalo-decor {
     display: none;
+  }
+}
+
+/* Огненный разделитель между секциями */
+.fire-divider {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin: -20px 0;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fire-divider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+}
+
+/* Плавающие искры (CSS) */
+.spark-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spark-container::before,
+.spark-container::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ff8c00;
+  border-radius: 50%;
+  box-shadow:
+    200px 100px 0 #ff6b00,
+    400px 250px 0 #ff8c00,
+    600px 80px 0 #ffaa00,
+    150px 300px 0 #ff6b00,
+    700px 200px 0 #ff8c00,
+    350px 50px 0 #ffaa00,
+    500px 350px 0 #ff6b00,
+    800px 150px 0 #ff8c00;
+  animation: sparks-float 8s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.spark-container::after {
+  animation-delay: -4s;
+  animation-duration: 10s;
+  box-shadow:
+    100px 200px 0 #ff8c00,
+    300px 50px 0 #ffaa00,
+    550px 300px 0 #ff6b00,
+    250px 180px 0 #ff8c00,
+    650px 120px 0 #ffaa00,
+    450px 280px 0 #ff6b00;
+}
+
+@keyframes sparks-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-15px) scale(1.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-8px) scale(0.8);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+/* Иконки этапов «Как мы работаем» */
+.step-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.4));
+  animation: icon-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes icon-glow {
+  0% {
+    filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 14px rgba(255, 140, 0, 0.6));
+  }
+}
+
+/* CTA — пульс свечения */
+.cta-button {
+  animation: cta-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes cta-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(220, 38, 38, 0.6),
+      0 0 60px rgba(255, 100, 0, 0.2);
+  }
+}
+
+/* Свечение логотипа Hero */
+.hero-logo-glow {
+  animation: eyes-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes eyes-glow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.2));
+  }
+  100% {
+    filter: drop-shadow(0 0 25px rgba(255, 140, 0, 0.5));
+  }
+}
+
+/* Пар у нижнего края секции */
+.steam-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(to top, rgba(255, 140, 0, 0.03) 0%, transparent 100%);
+  animation: steam-rise 6s ease-in-out infinite;
+}
+
+@keyframes steam-rise {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spark-container::before,
+  .spark-container::after,
+  .step-icon,
+  .cta-button,
+  .hero-logo-glow,
+  .steam-effect {
+    animation: none !important;
   }
 }
 

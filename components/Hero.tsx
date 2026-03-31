@@ -82,6 +82,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0 gearPattern opacity-80" aria-hidden="true" />
       <div className="absolute inset-0 z-0 industrialStripes opacity-40" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 z-0 noiseOverlay" aria-hidden="true" />
+      <div className="spark-container z-[1]" aria-hidden="true" />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_72%_28%,rgba(255,255,255,.14),transparent_38%)]"
@@ -121,7 +122,10 @@ export function Hero() {
               }
             >
               <motion.div
-                className="relative w-full bg-transparent p-0"
+                className={[
+                  "relative w-full bg-transparent p-0",
+                  reduced ? "" : "hero-logo-glow",
+                ].join(" ")}
                 animate={reduced ? undefined : { scale: [1, 1.014, 1] }}
                 transition={
                   reduced

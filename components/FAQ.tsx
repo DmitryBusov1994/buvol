@@ -1,16 +1,12 @@
 "use client";
 
-import { useId, useState, type CSSProperties } from "react";
+import { useId, useState } from "react";
 import { faq } from "@/content/siteContent";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { leftSlideVariants, usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
-
-const faqCompositionStyle = {
-  "--faq-composition-bg": `url("${publicAsset("/images/buffalo_chains_composition.png")}")`,
-} as CSSProperties;
 
 function FaqRow({ idx, question, answer }: { idx: number; question: string; answer: string }) {
   const reduced = usePrefersReducedMotion();
@@ -65,11 +61,16 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
 
 export function FAQ() {
   return (
-    <Section
-      id="faq"
-      className="bg-surface-light text-ink industrialStripes"
-      style={faqCompositionStyle}
-    >
+    <Section id="faq" className="bg-surface-light text-ink industrialStripes">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={publicAsset("/images/faq_buffalo_simple.png")}
+        alt=""
+        aria-hidden="true"
+        className="faq-buffalo-decor"
+        width={400}
+        decoding="async"
+      />
       <div className="layout-container section-y-compact">
         <div className="w-full max-w-2xl text-left">
           <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">

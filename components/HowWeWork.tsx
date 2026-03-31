@@ -1,6 +1,7 @@
 "use client";
 
 import { howWeWork } from "@/content/siteContent";
+import { HOW_WE_WORK_STEP_ICONS } from "@/lib/howWeWorkStepIcons";
 import { Section } from "@/components/Section";
 import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
@@ -13,8 +14,9 @@ export function HowWeWork() {
     <Section id="process" className="relative bg-surface-dark">
       <div className="absolute inset-0 gearPattern opacity-40" />
       <div className="noiseOverlay" />
+      <div className="spark-container" aria-hidden="true" />
 
-      <div className="relative layout-container section-y-spacious">
+      <div className="relative z-[1] layout-container section-y-spacious">
         <div>
           <h2 className="font-[var(--font-heading)] text-3xl tracking-wide text-white md:text-4xl">
             Как мы работаем
@@ -37,6 +39,15 @@ export function HowWeWork() {
               variants={revealVariants}
               className="relative flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3.5 transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:px-4 md:py-4"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={HOW_WE_WORK_STEP_ICONS[i]}
+                alt={step.title}
+                className="step-icon"
+                width={64}
+                height={64}
+                decoding="async"
+              />
               <div className="min-w-0 font-[var(--font-heading)] text-[13px] uppercase leading-snug tracking-wide text-brand-amber md:text-sm">
                 {step.title}
               </div>
