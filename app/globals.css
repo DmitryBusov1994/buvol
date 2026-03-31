@@ -184,66 +184,13 @@ h3 {
   z-index: 1;
 }
 
-/* Услуги — правая шестерня (зеркало, --services-gears-deco-mirrored) */
-#services::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  background-image: var(--services-gears-deco-mirrored);
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: auto 100%;
-  opacity: 0.85;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@media (max-width: 1024px) {
-  #services::after {
-    display: none;
-  }
-}
-
-/* Преимущества — только левая шестерня, чётко (--advantages-gears-deco) */
 #advantages {
   position: relative;
-  overflow: hidden;
-}
-
-/* Левая шестерня — без «дымки», чётко видна */
-#advantages::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  background-image: var(--advantages-gears-deco);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: auto 100%;
-  opacity: 0.85;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Правую шестерню убираем */
-#advantages::after {
-  display: none;
 }
 
 #advantages .layout-container {
   position: relative;
   z-index: 1;
-}
-
-@media (max-width: 1024px) {
-  #advantages::before {
-    display: none;
-  }
 }
 
 /* Контакты — фон гаража (--contacts-garage-bg) */

@@ -11,7 +11,6 @@ import { publicAsset } from "@/lib/publicPath";
 
 const servicesDecoStyle = {
   "--services-sparks-texture": `url("${publicAsset("/images/texture_sparks_smoke.webp")}")`,
-  "--services-gears-deco-mirrored": `url("${publicAsset("/images/decor_gears_fire_side_mirrored.webp")}")`,
   ["--section-bg-photo" as string]: `url("${publicAsset("/images/light_bg_v4_gears.webp")}")`,
 } as CSSProperties;
 
