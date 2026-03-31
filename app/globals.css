@@ -238,10 +238,11 @@ h3 {
   z-index: 1;
 }
 
-/* FAQ — голова быка + растягивающаяся «дымка» */
+/* FAQ — буйвол справа на всю высоту секции; зазор ~2cm до текстового столбца */
 #faq {
   position: relative;
   overflow-x: clip;
+  --faq-buffalo-col: min(420px, 36vw);
 }
 
 .faq-buffalo-wrap {
@@ -249,71 +250,47 @@ h3 {
   right: 0;
   top: 0;
   bottom: 0;
-  width: min(400px, 35vw);
+  width: var(--faq-buffalo-col);
   z-index: 0;
   pointer-events: none;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  box-sizing: border-box;
 }
 
 .faq-buffalo-img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: right top;
-  flex-shrink: 0;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 10%,
-    rgba(0, 0, 0, 0.8) 30%,
-    rgba(0, 0, 0, 1) 45%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 10%,
-    rgba(0, 0, 0, 0.8) 30%,
-    rgba(0, 0, 0, 1) 45%
-  );
-}
-
-.faq-buffalo-stretch {
+  height: 100%;
   flex: 1;
-  width: 100%;
   min-height: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(20, 16, 12, 0.9) 0%,
-    rgba(30, 18, 8, 0.6) 20%,
-    rgba(255, 100, 0, 0.05) 50%,
-    transparent 100%
-  );
+  object-fit: contain;
+  object-position: right center;
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.2) 10%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.8) 50%
+    rgba(0, 0, 0, 0.25) 12%,
+    rgba(0, 0, 0, 0.85) 32%,
+    rgba(0, 0, 0, 1) 48%
   );
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.2) 10%,
-    rgba(0, 0, 0, 0.6) 30%,
-    rgba(0, 0, 0, 0.8) 50%
+    rgba(0, 0, 0, 0.25) 12%,
+    rgba(0, 0, 0, 0.85) 32%,
+    rgba(0, 0, 0, 1) 48%
   );
 }
 
 #faq .layout-container {
   position: relative;
   z-index: 1;
-  padding-right: max(30vw, 200px);
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 768px) {
   #faq .layout-container {
-    padding-right: 0;
+    padding-right: calc(var(--faq-buffalo-col) + 2cm);
   }
 }
 

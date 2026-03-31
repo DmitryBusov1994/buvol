@@ -70,7 +70,6 @@ export function FAQ() {
           className="faq-buffalo-img"
           decoding="async"
         />
-        <div className="faq-buffalo-stretch" />
       </div>
       <div className="layout-container section-y-compact">
         <div className="w-full max-w-2xl text-left">
