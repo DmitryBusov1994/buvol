@@ -152,6 +152,20 @@ h3 {
   );
 }
 
+.faq-decor-img {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  height: auto;
+  opacity: 0.18;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 50% 50% at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at center, black 30%, transparent 70%);
+  z-index: 0;
+}
+
 .gearRotate {
   animation: gear-rotate 60s linear infinite;
 }
