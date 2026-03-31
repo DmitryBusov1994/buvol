@@ -21,7 +21,6 @@ export function Advantages() {
       className="relative bg-surface-light text-ink industrialStripes"
       style={advantagesDecoStyle}
     >
-      <div className="steam-effect" aria-hidden="true" />
       <div className="layout-container section-y-default">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div className="min-w-0">

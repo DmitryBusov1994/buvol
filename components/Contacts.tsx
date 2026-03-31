@@ -4,7 +4,6 @@ import type { CSSProperties } from "react";
 import { contacts, leadForm } from "@/content/siteContent";
 import { LeadRequestForm } from "@/components/LeadRequestForm";
 import { Section } from "@/components/Section";
-import { SectionHeadingAccent } from "@/components/SectionHeadingAccent";
 import { motion } from "framer-motion";
 import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
@@ -18,18 +17,12 @@ export function Contacts() {
 
   return (
     <Section id="contacts" className="relative bg-surface-dark" style={contactsDecoStyle}>
-      <div className="absolute inset-0 gearPattern opacity-40" />
-      <div className="noiseOverlay" />
       <div className="relative layout-container section-y-spacious">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
           <div>
-            <h2 className="font-[var(--font-heading)] text-3xl tracking-wide text-white md:text-4xl">
-              {contacts.title}
-            </h2>
-            <SectionHeadingAccent />
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70">{contacts.text}</p>
+            <h2 className="sr-only">Контакты</h2>
 
-            <div className="mt-8 grid gap-4">
+            <div className="grid gap-4">
               {[
                 { label: "Телефон", value: contacts.todos.phone || "—" },
                 { label: "Адрес", value: contacts.todos.address || "—" },

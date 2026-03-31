@@ -10,7 +10,6 @@ import { Advantages } from "@/components/Advantages";
 import { HowWeWork } from "@/components/HowWeWork";
 import { FAQ } from "@/components/FAQ";
 import { Contacts } from "@/components/Contacts";
-import { FireDivider } from "@/components/FireDivider";
 import { Footer } from "@/components/Footer";
 
 export default function Page() {
@@ -23,12 +22,9 @@ export default function Page() {
         <HighlightsStrip />
         <Services />
         <WhoWeHelp />
-        <FireDivider />
         <Advantages />
         <HowWeWork />
-        <FireDivider />
         <FAQ />
-        <FireDivider />
         <Contacts />
       </main>
       <Footer className="relative z-10" />
