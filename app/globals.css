@@ -152,43 +152,33 @@ h3 {
   );
 }
 
-/* FAQ: рамка из цепей (--faq-chains-border задаётся в компоненте через publicAsset) */
+/* FAQ: композиция буйвол+цепи (--faq-composition-bg задаётся в компоненте через publicAsset) */
 #faq {
   position: relative;
   overflow-x: clip;
 }
 
-.faq-chained-wrapper {
-  position: relative;
-  border: 40px solid transparent;
-  border-right-width: 20px;
-  border-image-source: var(--faq-chains-border);
-  border-image-slice: 200 80 180 150 fill;
-  border-image-width: 40px 20px 40px 40px;
-  border-image-repeat: round;
-  border-image-outset: 10px;
+#faq::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background-image: var(--faq-composition-bg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
 }
 
-.faq-buffalo {
-  position: absolute;
-  right: -4%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(320px, 30vw);
-  height: auto;
-  z-index: 5;
-  pointer-events: none;
-  filter: drop-shadow(0 0 20px rgba(255, 100, 0, 0.2));
+#faq .layout-container {
+  position: relative;
+  z-index: 3;
 }
 
 @media (max-width: 767px) {
-  .faq-buffalo {
+  #faq::after {
     display: none;
-  }
-
-  .faq-chained-wrapper {
-    border-image: none;
-    border: none;
   }
 }
 

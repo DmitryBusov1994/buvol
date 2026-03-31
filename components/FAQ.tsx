@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 import { leftSlideVariants, usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
 
-const faqChainsBorderStyle = {
-  "--faq-chains-border": `url("${publicAsset("/images/faq_chains_clean.png")}")`,
+const faqCompositionStyle = {
+  "--faq-composition-bg": `url("${publicAsset("/images/buffalo_chains_composition.png")}")`,
 } as CSSProperties;
 
 function FaqRow({ idx, question, answer }: { idx: number; question: string; answer: string }) {
@@ -65,34 +65,27 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
 
 export function FAQ() {
   return (
-    <Section id="faq" className="bg-surface-light text-ink industrialStripes">
-      <div className="faq-chained-wrapper" style={faqChainsBorderStyle}>
-        <div className="layout-container section-y-compact relative z-[1]">
-          <div className="w-full max-w-2xl text-left">
-            <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
-              FAQ
-            </h2>
-            <div className="mt-2">
-              <SectionHeadingAccent />
-            </div>
+    <Section
+      id="faq"
+      className="bg-surface-light text-ink industrialStripes"
+      style={faqCompositionStyle}
+    >
+      <div className="layout-container section-y-compact">
+        <div className="w-full max-w-2xl text-left">
+          <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
+            FAQ
+          </h2>
+          <div className="mt-2">
+            <SectionHeadingAccent />
+          </div>
 
-            <div className="mt-8 grid w-full gap-3 md:mt-10">
-              {faq.map((f, i) => (
-                <FaqRow key={f.question} idx={i} question={f.question} answer={f.answer} />
-              ))}
-            </div>
+          <div className="mt-8 grid w-full gap-3 md:mt-10">
+            {faq.map((f, i) => (
+              <FaqRow key={f.question} idx={i} question={f.question} answer={f.answer} />
+            ))}
           </div>
         </div>
       </div>
-      {/* eslint-disable-next-line @next/next/no-img-element -- декор, не LCP */}
-      <img
-        src={publicAsset("/images/faq_buffalo_right.png")}
-        alt=""
-        aria-hidden="true"
-        className="faq-buffalo"
-        width={320}
-        decoding="async"
-      />
     </Section>
   );
 }
