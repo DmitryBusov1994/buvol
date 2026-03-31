@@ -26,17 +26,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href={publicAsset("/hero-logo.webp")}
           type="image/webp"
         />
-        <link rel="icon" href={publicAsset("/favicon.ico")} sizes="any" />
+        <link rel="icon" href={publicAsset("/images/favicon.ico")} sizes="any" />
         <link
           rel="icon"
-          href={publicAsset("/favicon-32.png")}
+          href={publicAsset("/images/favicon-32.png")}
           type="image/png"
           sizes="32x32"
         />
-        <link rel="apple-touch-icon" href={publicAsset("/favicon-180.png")} />
+        <link rel="apple-touch-icon" href={publicAsset("/images/favicon-180.png")} />
         <link
           rel="icon"
-          href={publicAsset("/favicon-192.png")}
+          href={publicAsset("/images/favicon-192.png")}
           type="image/png"
           sizes="192x192"
         />
