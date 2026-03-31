@@ -359,20 +359,22 @@ h3 {
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  /* Ниже центра — морда и роги на уровне шестерни, эффект «катит на рогах» */
+  transform: translateY(-36%);
   width: 180px;
   height: auto;
   z-index: 2;
+  transform-origin: 70% 80%;
   animation: buffalo-push 1.2s ease-in-out infinite;
 }
 
 @keyframes buffalo-push {
   0%,
   100% {
-    transform: translateY(-50%) translateX(0);
+    transform: translateY(-36%) translateX(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-50%) translateX(8px);
+    transform: translateY(-36%) translateX(10px) rotate(2deg);
   }
 }
 
@@ -381,7 +383,8 @@ h3 {
   left: 118px;
   right: auto;
   top: 50%;
-  transform: translateY(-50%);
+  /* Чуть выше центра сцены — совпадение с рогами при опущенной голове */
+  transform: translateY(-52%);
   width: 130px;
   height: 130px;
   z-index: 1;
@@ -390,10 +393,10 @@ h3 {
 
 @keyframes gear-spin {
   0% {
-    transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-52%) rotate(0deg);
   }
   100% {
-    transform: translateY(-50%) rotate(360deg);
+    transform: translateY(-52%) rotate(360deg);
   }
 }
 
