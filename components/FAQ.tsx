@@ -68,7 +68,6 @@ export function FAQ() {
         alt=""
         aria-hidden="true"
         className="faq-buffalo-decor"
-        width={400}
         decoding="async"
       />
       <div className="layout-container section-y-compact">
