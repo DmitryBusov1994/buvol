@@ -176,7 +176,7 @@ h3 {
   z-index: 1;
 }
 
-/* Преимущества — шестерни на весь блок (--advantages-gears-deco) */
+/* Преимущества — шестерни слева/справа, на всю высоту секции (--advantages-gears-deco) */
 #advantages {
   position: relative;
   overflow: hidden;
@@ -185,19 +185,46 @@ h3 {
 #advantages::before {
   content: "";
   position: absolute;
-  inset: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
   background-image: var(--advantages-gears-deco);
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  opacity: 0.62;
+  background-position: left center;
+  background-size: auto 100%;
+  opacity: 0.55;
   pointer-events: none;
   z-index: 0;
+}
+
+#advantages::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background-image: var(--advantages-gears-deco);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+  transform: scaleX(-1);
 }
 
 #advantages .layout-container {
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  #advantages::before,
+  #advantages::after {
+    display: none;
+  }
 }
 
 /* Контакты — фон гаража (--contacts-garage-bg) */
@@ -223,7 +250,7 @@ h3 {
   z-index: 1;
 }
 
-/* FAQ — буйвол на всю секцию, хорошо читается */
+/* FAQ — буйвол: прежняя ширина, по вертикали на всю секцию */
 #faq {
   position: relative;
   overflow-x: clip;
@@ -231,28 +258,29 @@ h3 {
 
 .faq-buffalo-decor {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  right: -3%;
+  top: 0;
+  bottom: 0;
+  width: min(400px, 35vw);
+  height: auto;
   object-fit: cover;
-  object-position: 72% center;
+  object-position: right center;
   z-index: 0;
   pointer-events: none;
   opacity: 1;
-  /* лёгкий переход слева к тексту, без «испарения» картинки */
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 0.35) 12%,
-    black 28%,
-    black 100%
+  mask-image: radial-gradient(
+    ellipse 80% 90% at 72% 50%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.65) 45%,
+    rgba(0, 0, 0, 0.2) 72%,
+    transparent 96%
   );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 0.35) 12%,
-    black 28%,
-    black 100%
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 90% at 72% 50%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.65) 45%,
+    rgba(0, 0, 0, 0.2) 72%,
+    transparent 96%
   );
 }
 
