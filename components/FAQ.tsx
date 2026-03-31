@@ -62,19 +62,19 @@ export function FAQ() {
   return (
     <Section id="faq" className="relative bg-surface-light text-ink industrialStripes">
       <div className="layout-container section-y-compact">
-        <div className="mx-auto max-w-2xl">
+        <div className="w-full max-w-2xl text-left">
           <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
             FAQ
           </h2>
           <div className="mt-2">
             <SectionHeadingAccent />
           </div>
-        </div>
 
-        <div className="mx-auto mt-8 grid max-w-2xl gap-3 md:mt-10">
-          {faq.map((f, i) => (
-            <FaqRow key={f.question} idx={i} question={f.question} answer={f.answer} />
-          ))}
+          <div className="mt-8 grid w-full gap-3 md:mt-10">
+            {faq.map((f, i) => (
+              <FaqRow key={f.question} idx={i} question={f.question} answer={f.answer} />
+            ))}
+          </div>
         </div>
       </div>
     </Section>

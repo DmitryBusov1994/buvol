@@ -26,7 +26,7 @@ export function HowWeWork() {
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 items-stretch gap-3 sm:mt-9 sm:grid-cols-2 sm:gap-3 lg:mx-auto lg:max-w-5xl lg:grid-cols-5 lg:gap-3">
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-3 sm:mt-9 sm:grid-cols-2 sm:gap-3 lg:grid-cols-5 lg:gap-3">
           {howWeWork.map((step, i) => (
             <motion.div
               key={step.title}
