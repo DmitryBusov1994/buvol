@@ -1,8 +1,11 @@
-import type { MetadataRoute } from "next";
+import { NextResponse } from "next/server";
 import { publicAsset } from "@/lib/publicPath";
 
-export default function manifest(): MetadataRoute.Manifest {
-  return {
+/** С `output: "export"` маршрут должен быть явно статическим. */
+export const dynamic = "force-static";
+
+export function GET() {
+  const body = {
     name: "Буйвол Мотор",
     short_name: "Буйвол Мотор",
     icons: [
@@ -18,4 +21,8 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
   };
+
+  return NextResponse.json(body, {
+    headers: { "Content-Type": "application/manifest+json; charset=utf-8" },
+  });
 }
