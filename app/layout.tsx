@@ -26,6 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href={publicAsset("/hero-logo.webp")}
           type="image/webp"
         />
+        <link rel="preload" as="image" href={publicAsset("/images/loader_buffalo_head.png")} />
+        <link rel="preload" as="image" href={publicAsset("/images/loader_gear.png")} />
         <link rel="icon" href={publicAsset("/images/favicon.ico")} sizes="any" />
         <link
           rel="icon"
