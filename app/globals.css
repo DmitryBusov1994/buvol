@@ -152,39 +152,6 @@ h3 {
   );
 }
 
-.faq-decor-img {
-  position: absolute;
-  right: 8%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(440px, 42vw);
-  height: auto;
-  opacity: 1;
-  pointer-events: none;
-  z-index: 0;
-
-  mask-image: radial-gradient(
-    ellipse 70% 70% at 60% 50%,
-    rgba(0, 0, 0, 1) 0%, /* центр — 100% виден, чёткий */
-    rgba(0, 0, 0, 0.7) 35%,
-    rgba(0, 0, 0, 0.3) 60%,
-    rgba(0, 0, 0, 0.08) 80%,
-    transparent 95%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 70% 70% at 60% 50%,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.7) 35%,
-    rgba(0, 0, 0, 0.3) 60%,
-    rgba(0, 0, 0, 0.08) 80%,
-    transparent 95%
-  );
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-}
-
 .gearRotate {
   animation: gear-rotate 60s linear infinite;
 }
