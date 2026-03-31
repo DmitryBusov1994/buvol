@@ -159,24 +159,25 @@ h3 {
   transform: translateY(-50%);
   width: min(440px, 42vw);
   height: auto;
-  opacity: 1; /* убираем общий туман */
+  opacity: 1;
   pointer-events: none;
   z-index: 0;
 
-  /* маска растворяет КРАЯ в фон, а центр остаётся чётким */
   mask-image: radial-gradient(
     ellipse 70% 70% at 60% 50%,
-    rgba(0, 0, 0, 0.25) 0%, /* центр — полупрозрачный, не забивает контент */
-    rgba(0, 0, 0, 0.2) 40%,
-    rgba(0, 0, 0, 0.1) 65%,
-    transparent 90%
+    rgba(0, 0, 0, 1) 0%, /* центр — 100% виден, чёткий */
+    rgba(0, 0, 0, 0.7) 35%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.08) 80%,
+    transparent 95%
   );
   -webkit-mask-image: radial-gradient(
     ellipse 70% 70% at 60% 50%,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.2) 40%,
-    rgba(0, 0, 0, 0.1) 65%,
-    transparent 90%
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.7) 35%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.08) 80%,
+    transparent 95%
   );
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
