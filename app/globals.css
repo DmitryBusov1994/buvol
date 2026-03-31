@@ -157,12 +157,31 @@ h3 {
   right: -5%;
   top: 50%;
   transform: translateY(-50%);
-  width: 420px;
+  width: min(440px, 42vw);
   height: auto;
-  opacity: 0.18;
+  opacity: 0.44;
   pointer-events: none;
-  mask-image: radial-gradient(ellipse 50% 50% at center, black 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 50% 50% at center, black 30%, transparent 70%);
+  /* Плотный центр (мотив читается), мягкое растворение по краям и слева к контенту */
+  mask-image: radial-gradient(
+    ellipse 105% 118% at 72% 50%,
+    #000 0%,
+    #000 52%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.12) 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 105% 118% at 72% 50%,
+    #000 0%,
+    #000 52%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.12) 88%,
+    transparent 100%
+  );
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
   z-index: 0;
 }
 
