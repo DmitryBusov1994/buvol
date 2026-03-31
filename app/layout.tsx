@@ -11,6 +11,16 @@ export const metadata: Metadata = {
   title: "Буйвол Мотор — ремонт и ТО грузовой техники в Екатеринбурге",
   description:
     "СТО «Буйвол Мотор»: ремонт и техническое обслуживание тягачей, самосвалов, фургонов и спецтехники. Диагностика, ДВС, КПП, тормоза, подвеска, рулевое.",
+  icons: {
+    icon: [
+      { url: publicAsset("/favicon.ico"), sizes: "any" },
+      { url: publicAsset("/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: publicAsset("/favicon-192.png"), sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: publicAsset("/favicon-180.png"), sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -28,20 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <link rel="preload" as="image" href={publicAsset("/images/loader_buffalo_head.png")} />
         <link rel="preload" as="image" href={publicAsset("/images/loader_gear.png")} />
-        <link rel="icon" href={publicAsset("/images/favicon.ico")} sizes="any" />
-        <link
-          rel="icon"
-          href={publicAsset("/images/favicon-32.png")}
-          type="image/png"
-          sizes="32x32"
-        />
-        <link rel="apple-touch-icon" href={publicAsset("/images/favicon-180.png")} />
-        <link
-          rel="icon"
-          href={publicAsset("/images/favicon-192.png")}
-          type="image/png"
-          sizes="192x192"
-        />
       </head>
       <body className="min-h-screen antialiased">
         <Preloader />
