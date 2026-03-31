@@ -10,8 +10,8 @@ import { revealVariants, rotateInVariants, usePrefersReducedMotion } from "@/lib
 import { publicAsset } from "@/lib/publicPath";
 
 const servicesDecoStyle = {
-  "--services-sparks-texture": `url("${publicAsset("/images/texture_sparks_smoke.png")}")`,
-  "--services-gears-deco-mirrored": `url("${publicAsset("/images/decor_gears_fire_side_mirrored.png")}")`,
+  "--services-sparks-texture": `url("${publicAsset("/images/texture_sparks_smoke.webp")}")`,
+  "--services-gears-deco-mirrored": `url("${publicAsset("/images/decor_gears_fire_side_mirrored.webp")}")`,
 } as CSSProperties;
 
 function ServiceItems({ groupId }: { groupId: string }) {

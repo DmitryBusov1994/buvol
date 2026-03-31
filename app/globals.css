@@ -345,6 +345,7 @@ h3 {
   height: 3px;
   background: #ff8c00;
   border-radius: 50%;
+  will-change: transform, opacity;
   box-shadow:
     200px 100px 0 #ff6b00,
     400px 250px 0 #ff8c00,
@@ -429,6 +430,7 @@ h3 {
 /* Свечение логотипа Hero */
 .hero-logo-glow {
   animation: eyes-glow 4s ease-in-out infinite alternate;
+  will-change: filter;
 }
 
 @keyframes eyes-glow {
@@ -478,6 +480,7 @@ h3 {
 
 .gearRotate {
   animation: gear-rotate 60s linear infinite;
+  will-change: transform;
 }
 
 .heroBackdrop {
@@ -682,6 +685,7 @@ h3 {
 
 .hero-ember-pulse {
   animation: ember-drift 7s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 /* «Вспышка пламени» при нажатии: свечение + лёгкая засветка (без слоёв под заливкой кнопки) */

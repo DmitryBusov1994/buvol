@@ -10,7 +10,7 @@ import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
 
 const contactsDecoStyle = {
-  "--contacts-garage-bg": `url("${publicAsset("/images/bg_contact_garage.png")}")`,
+  "--contacts-garage-bg": `url("${publicAsset("/images/bg_contact_garage.webp")}")`,
 } as CSSProperties;
 
 export function Contacts() {

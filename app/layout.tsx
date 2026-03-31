@@ -55,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           as="image"
           href={publicAsset("/hero-logo.webp")}
           type="image/webp"
+          fetchPriority="high"
         />
       </head>
       <body className="min-h-screen antialiased">

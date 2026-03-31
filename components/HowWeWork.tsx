@@ -39,15 +39,19 @@ export function HowWeWork() {
               variants={revealVariants}
               className="relative flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3.5 transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:px-4 md:py-4"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={HOW_WE_WORK_STEP_ICONS[i]}
-                alt={step.title}
-                className="step-icon"
-                width={64}
-                height={64}
-                decoding="async"
-              />
+              <picture>
+                <source type="image/webp" srcSet={HOW_WE_WORK_STEP_ICONS[i].webp} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={HOW_WE_WORK_STEP_ICONS[i].png}
+                  alt={step.title}
+                  className="step-icon"
+                  width={64}
+                  height={64}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <div className="min-w-0 font-[var(--font-heading)] text-[13px] uppercase leading-snug tracking-wide text-brand-amber md:text-sm">
                 {step.title}
               </div>

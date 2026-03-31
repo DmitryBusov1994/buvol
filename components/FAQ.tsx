@@ -63,13 +63,17 @@ export function FAQ() {
   return (
     <Section id="faq" className="bg-surface-light text-ink industrialStripes">
       <div className="faq-buffalo-wrap" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={publicAsset("/images/faq_buffalo_simple.png")}
-          alt=""
-          className="faq-buffalo-img"
-          decoding="async"
-        />
+        <picture>
+          <source type="image/webp" srcSet={publicAsset("/images/faq_buffalo_simple.webp")} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={publicAsset("/images/faq_buffalo_simple.png")}
+            alt=""
+            className="faq-buffalo-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div className="layout-container section-y-compact">
         <div className="w-full max-w-2xl text-left">

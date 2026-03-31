@@ -9,7 +9,7 @@ import { revealVariants, usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
 
 const advantagesDecoStyle = {
-  "--advantages-gears-deco": `url("${publicAsset("/images/decor_gears_fire_side.png")}")`,
+  "--advantages-gears-deco": `url("${publicAsset("/images/decor_gears_fire_side.webp")}")`,
 } as CSSProperties;
 
 export function Advantages() {
