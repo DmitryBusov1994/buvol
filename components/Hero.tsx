@@ -9,7 +9,6 @@ import {
   useTransform,
 } from "framer-motion";
 import { hero } from "@/content/siteContent";
-import { HeroGearSvg } from "@/components/HeroGearSvg";
 import { HeroWorkshopAtmosphere } from "@/components/HeroWorkshopAtmosphere";
 import { usePrefersReducedMotion } from "@/lib/motion";
 import { publicAsset } from "@/lib/publicPath";
@@ -91,18 +90,6 @@ export function Hero() {
         aria-hidden="true"
         className="gearRotate pointer-events-none absolute -right-32 top-8 z-[1] h-[26rem] w-[26rem] rounded-full border border-brand-amber/15 opacity-45 md:top-10"
       />
-      <motion.div
-        className="pointer-events-none absolute right-6 top-14 z-[2] md:right-10 md:top-18"
-        initial={false}
-        animate={{ opacity: 0.06 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        aria-hidden="true"
-      >
-        <div className={reduced ? "" : "gearRotate"}>
-          <HeroGearSvg className="h-28 w-28 md:h-32 md:w-32" />
-        </div>
-      </motion.div>
-
       <div
         className="absolute inset-0 z-[2] bg-gradient-to-r from-[#0e0e10]/95 via-[#0e0e10]/78 to-[#0e0e10]/40 max-md:from-[#0e0e10]/98 max-md:via-[#0e0e10]/92"
         aria-hidden="true"
