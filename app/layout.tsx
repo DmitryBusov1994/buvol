@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Preloader } from "@/components/Preloader";
 import { publicAsset } from "@/lib/publicPath";
 
 /** Шрифты через <link>: не блокируют компиляцию dev/build при таймаутах Google (в отличие от next/font/google). */
@@ -10,9 +11,6 @@ export const metadata: Metadata = {
   title: "Буйвол Мотор — ремонт и ТО грузовой техники в Екатеринбурге",
   description:
     "СТО «Буйвол Мотор»: ремонт и техническое обслуживание тягачей, самосвалов, фургонов и спецтехники. Диагностика, ДВС, КПП, тормоза, подвеска, рулевое.",
-  icons: {
-    icon: [{ url: publicAsset("/icon.svg"), type: "image/svg+xml" }],
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -28,8 +26,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href={publicAsset("/hero-logo.webp")}
           type="image/webp"
         />
+        <link rel="icon" href={publicAsset("/favicon.ico")} sizes="any" />
+        <link
+          rel="icon"
+          href={publicAsset("/favicon-32.png")}
+          type="image/png"
+          sizes="32x32"
+        />
+        <link rel="apple-touch-icon" href={publicAsset("/favicon-180.png")} />
+        <link
+          rel="icon"
+          href={publicAsset("/favicon-192.png")}
+          type="image/png"
+          sizes="192x192"
+        />
       </head>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <Preloader />
+        {children}
+      </body>
     </html>
   );
 }
