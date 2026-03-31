@@ -152,70 +152,43 @@ h3 {
   );
 }
 
-/* FAQ: буйвол и цепи (--faq-chain-h / --faq-chain-v задаются в компоненте через publicAsset) */
+/* FAQ: рамка из цепей (--faq-chains-border задаётся в компоненте через publicAsset) */
+#faq {
+  position: relative;
+  overflow-x: clip;
+}
+
+.faq-chained-wrapper {
+  position: relative;
+  border: 40px solid transparent;
+  border-right-width: 20px;
+  border-image-source: var(--faq-chains-border);
+  border-image-slice: 200 80 180 150 fill;
+  border-image-width: 40px 20px 40px 40px;
+  border-image-repeat: round;
+  border-image-outset: 10px;
+}
+
 .faq-buffalo {
   position: absolute;
-  right: -2%;
+  right: -4%;
   top: 50%;
   transform: translateY(-50%);
-  width: min(380px, 35vw);
+  width: min(320px, 30vw);
   height: auto;
-  z-index: 2;
+  z-index: 5;
   pointer-events: none;
-  filter: drop-shadow(0 0 30px rgba(255, 100, 0, 0.15));
-}
-
-.faq-chain-top {
-  position: absolute;
-  top: -8px;
-  left: 0;
-  right: 15%;
-  height: 28px;
-  background-image: var(--faq-chain-h);
-  background-repeat: repeat-x;
-  background-position: left center;
-  background-size: auto 100%;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-.faq-chain-bottom {
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  right: 15%;
-  height: 28px;
-  background-image: var(--faq-chain-h);
-  background-repeat: repeat-x;
-  background-position: left center;
-  background-size: auto 100%;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-.faq-chain-left {
-  position: absolute;
-  left: -8px;
-  top: 0;
-  bottom: 0;
-  width: 28px;
-  background-image: var(--faq-chain-v);
-  background-repeat: repeat-y;
-  background-position: center top;
-  background-size: 100% auto;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0.7;
+  filter: drop-shadow(0 0 20px rgba(255, 100, 0, 0.2));
 }
 
 @media (max-width: 767px) {
-  .faq-buffalo,
-  .faq-chain-top,
-  .faq-chain-bottom,
-  .faq-chain-left {
+  .faq-buffalo {
     display: none;
+  }
+
+  .faq-chained-wrapper {
+    border-image: none;
+    border: none;
   }
 }
 
