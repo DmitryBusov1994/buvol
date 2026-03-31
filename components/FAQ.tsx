@@ -37,14 +37,30 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
         <span className="min-w-0 flex-1 pr-2 text-base font-medium leading-snug text-ink">
           {question}
         </span>
-        <span
-          aria-hidden="true"
-          className={[
-            "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-black/10 bg-surface-panel text-lg leading-none text-ink/70 transition-transform duration-200",
-            open ? "rotate-45" : "",
-          ].join(" ")}
-        >
-          +
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center" aria-hidden="true">
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={
+                open
+                  ? publicAsset("/images/faq_gear_indicator_open.webp")
+                  : publicAsset("/images/faq_gear_indicator_closed.webp")
+              }
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={
+                open
+                  ? publicAsset("/images/faq_gear_indicator_open.png")
+                  : publicAsset("/images/faq_gear_indicator_closed.png")
+              }
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 object-contain"
+              decoding="async"
+            />
+          </picture>
         </span>
       </button>
       <div

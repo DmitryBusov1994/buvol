@@ -44,7 +44,7 @@ export function HighlightsStrip() {
               variants={revealVariants}
               className="relative z-[1] flex flex-col rounded-2xl border border-white/10 bg-white/5 p-4 text-left shadow-[0_12px_40px_rgba(0,0,0,.35)] backdrop-blur-[2px] transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:rounded-3xl md:p-5"
             >
-              <div className="font-[var(--font-heading)] text-lg leading-snug tracking-wide text-white md:text-xl">
+              <div className="font-[var(--font-heading)] text-lg leading-snug tracking-wide text-orange-300/90 md:text-xl">
                 {s.title}
               </div>
               <div className="mt-2.5 text-sm leading-relaxed text-white/70">{s.description}</div>

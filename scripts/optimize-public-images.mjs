@@ -88,6 +88,15 @@ async function run() {
     console.log("OK:", base, "→ webp + png (≤1920w)");
   }
 
+  // --- FAQ индикаторы шестерни (кнопка открыто/закрыто) ---
+  for (const base of ["faq_gear_indicator_closed", "faq_gear_indicator_open"]) {
+    const input = path.join(imgDir, `${base}.png`);
+    if (!fs.existsSync(input)) continue;
+    const p = sharp(input).resize(96, 96, { fit: "inside", withoutEnlargement: true });
+    await toWebpPng(p, path.join(imgDir, base));
+    console.log("OK:", base, "→ webp + png (≤96)");
+  }
+
   // --- FAQ buffalo ---
   const faq = path.join(imgDir, "faq_buffalo_simple.png");
   if (fs.existsSync(faq)) {
