@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Preloader } from "@/components/Preloader";
 import { publicAsset } from "@/lib/publicPath";
 
 /** Шрифты через <link>: не блокируют компиляцию dev/build при таймаутах Google (в отличие от next/font/google). */
@@ -57,11 +56,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href={publicAsset("/hero-logo.webp")}
           type="image/webp"
         />
-        <link rel="preload" as="image" href={publicAsset("/images/loader_buffalo_head.png")} />
-        <link rel="preload" as="image" href={publicAsset("/images/loader_gear.png")} />
       </head>
       <body className="min-h-screen antialiased">
-        <Preloader />
         {children}
       </body>
     </html>
