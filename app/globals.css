@@ -176,6 +176,29 @@ h3 {
   z-index: 1;
 }
 
+/* Услуги — правая шестерня (зеркало, --services-gears-deco-mirrored) */
+#services::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background-image: var(--services-gears-deco-mirrored);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 1024px) {
+  #services::after {
+    display: none;
+  }
+}
+
 /* Преимущества — только левая шестерня, чётко (--advantages-gears-deco) */
 #advantages {
   position: relative;
@@ -238,7 +261,7 @@ h3 {
   z-index: 1;
 }
 
-/* FAQ — буйвол справа на всю высоту секции; зазор ~2cm до текстового столбца */
+/* FAQ — буйвол справа, прижат к нижнему краю секции; зазор ~2cm до текстового столбца */
 #faq {
   position: relative;
   overflow-x: clip;
@@ -256,17 +279,18 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: stretch;
+  justify-content: flex-end;
   box-sizing: border-box;
 }
 
 .faq-buffalo-img {
   width: 100%;
-  height: 100%;
-  flex: 1;
+  max-height: 100%;
+  height: auto;
+  flex: 0 1 auto;
   min-height: 0;
   object-fit: contain;
-  object-position: right center;
+  object-position: right bottom;
   mask-image: linear-gradient(
     to right,
     transparent 0%,

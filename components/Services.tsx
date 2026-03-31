@@ -11,6 +11,7 @@ import { publicAsset } from "@/lib/publicPath";
 
 const servicesDecoStyle = {
   "--services-sparks-texture": `url("${publicAsset("/images/texture_sparks_smoke.png")}")`,
+  "--services-gears-deco-mirrored": `url("${publicAsset("/images/decor_gears_fire_side_mirrored.png")}")`,
 } as CSSProperties;
 
 function ServiceItems({ groupId }: { groupId: string }) {
