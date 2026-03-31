@@ -238,37 +238,70 @@ h3 {
   z-index: 1;
 }
 
-/* FAQ — бык чёткий, до низа секции, зазор у контента */
+/* FAQ — голова быка + растягивающаяся «дымка» */
 #faq {
   position: relative;
   overflow-x: clip;
 }
 
-.faq-buffalo-decor {
+.faq-buffalo-wrap {
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
-  width: auto;
-  max-width: 28vw;
-  object-fit: contain;
-  object-position: right top;
+  bottom: 0;
+  width: min(400px, 35vw);
   z-index: 0;
   pointer-events: none;
-  opacity: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-buffalo-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: right top;
+  flex-shrink: 0;
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.3) 15%,
-    rgba(0, 0, 0, 0.85) 35%,
-    rgba(0, 0, 0, 1) 50%
+    rgba(0, 0, 0, 0.3) 10%,
+    rgba(0, 0, 0, 0.8) 30%,
+    rgba(0, 0, 0, 1) 45%
   );
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.3) 15%,
-    rgba(0, 0, 0, 0.85) 35%,
-    rgba(0, 0, 0, 1) 50%
+    rgba(0, 0, 0, 0.3) 10%,
+    rgba(0, 0, 0, 0.8) 30%,
+    rgba(0, 0, 0, 1) 45%
+  );
+}
+
+.faq-buffalo-stretch {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 16, 12, 0.9) 0%,
+    rgba(30, 18, 8, 0.6) 20%,
+    rgba(255, 100, 0, 0.05) 50%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 10%,
+    rgba(0, 0, 0, 0.6) 30%,
+    rgba(0, 0, 0, 0.8) 50%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 10%,
+    rgba(0, 0, 0, 0.6) 30%,
+    rgba(0, 0, 0, 0.8) 50%
   );
 }
 
@@ -279,18 +312,18 @@ h3 {
 }
 
 @media (max-width: 1024px) {
-  .faq-buffalo-decor {
-    max-width: 35vw;
-  }
-
   #faq .layout-container {
     padding-right: 0;
   }
 }
 
 @media (max-width: 767px) {
-  .faq-buffalo-decor {
+  .faq-buffalo-wrap {
     display: none;
+  }
+
+  #faq .layout-container {
+    padding-right: 0;
   }
 }
 

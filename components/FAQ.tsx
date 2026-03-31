@@ -62,14 +62,16 @@ function FaqRow({ idx, question, answer }: { idx: number; question: string; answ
 export function FAQ() {
   return (
     <Section id="faq" className="bg-surface-light text-ink industrialStripes">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={publicAsset("/images/faq_buffalo_simple.png")}
-        alt=""
-        aria-hidden="true"
-        className="faq-buffalo-decor"
-        decoding="async"
-      />
+      <div className="faq-buffalo-wrap" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={publicAsset("/images/faq_buffalo_simple.png")}
+          alt=""
+          className="faq-buffalo-img"
+          decoding="async"
+        />
+        <div className="faq-buffalo-stretch" />
+      </div>
       <div className="layout-container section-y-compact">
         <div className="w-full max-w-2xl text-left">
           <h2 className="font-[var(--font-heading)] text-3xl tracking-wide md:text-4xl">
