@@ -583,6 +583,61 @@ h3 {
     drop-shadow(0 0 1px rgba(255, 120, 90, 0.22));
 }
 
+/* Hero H1 «СТО «БУЙВОЛ МОТОР»» — те же градиенты/тени, что .logo-header-word-*, крупный масштаб */
+.logo-hero-title-brand {
+  display: inline-flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.3em;
+  row-gap: 0.12em;
+}
+
+.logo-hero-title-prefix {
+  font-family: var(--font-heading), sans-serif;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(254 215 170 / 0.92);
+  font-size: clamp(0.8125rem, 2.2vw, 1.125rem);
+}
+
+.logo-hero-title-word-top,
+.logo-hero-title-word-bottom {
+  font-family: var(--font-heading), sans-serif;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-size: clamp(1.125rem, 4.2vw, 2.25rem);
+}
+
+.logo-hero-title-word-top {
+  background: linear-gradient(
+    165deg,
+    #fff9e8 8%,
+    #f2c14e 38%,
+    #b8731a 72%,
+    #4a1f08 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.88))
+    drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 1px rgba(255, 230, 180, 0.3));
+}
+
+.logo-hero-title-word-bottom {
+  background: linear-gradient(180deg, #ff5a45 0%, #c0392b 48%, #6a1510 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.85))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 1px rgba(255, 120, 90, 0.22));
+}
+
 /* Визуальное выделение быка: маска скрывает землю и краевое пламя (не полноценный PNG с альфой) */
 .hero-bull-cut {
   -webkit-mask-image: radial-gradient(

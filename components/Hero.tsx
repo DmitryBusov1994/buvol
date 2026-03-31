@@ -71,7 +71,7 @@ export function Hero() {
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1200], [0, 360]);
   const t = reduced ? { duration: 0 } : { duration: 0.35, ease: "easeOut" as const };
-  const heroTitle = splitHeroOverline(hero.overline);
+  const heroCityLine = splitHeroOverline(hero.overline).city;
 
   return (
     <section
@@ -245,21 +245,23 @@ export function Hero() {
           </div>
           <div className="relative z-[4] flex w-full min-w-0 max-w-2xl flex-1 flex-col items-stretch text-left">
             <motion.h1
-              className="font-[var(--font-heading)] mb-4 text-xl uppercase leading-[1.08] tracking-[0.06em] text-brand-amber sm:mb-5 sm:text-2xl lg:mb-6 lg:text-3xl xl:text-4xl"
+              className="mb-4 sm:mb-5 lg:mb-6"
               initial={reduced ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={t}
             >
-              {heroTitle.city ? (
-                <>
-                  {heroTitle.main}
-                  <span className="mt-1 block text-lg tracking-[0.08em] text-orange-200/85 sm:mt-1.5 sm:text-xl lg:text-2xl">
-                    {heroTitle.city}
-                  </span>
-                </>
-              ) : (
-                heroTitle.main
-              )}
+              <span className="logo-hero-title-brand" aria-hidden="true">
+                <span className="logo-hero-title-prefix">СТО «</span>
+                <span className="logo-hero-title-word-top">БУЙВОЛ</span>
+                <span className="logo-hero-title-word-bottom">МОТОР</span>
+                <span className="logo-hero-title-prefix">»</span>
+              </span>
+              <span className="sr-only">{hero.overline}</span>
+              {heroCityLine ? (
+                <span className="mt-2 block text-sm text-orange-200/75 sm:mt-2.5 sm:text-base">
+                  {heroCityLine}
+                </span>
+              ) : null}
             </motion.h1>
 
             <motion.p
