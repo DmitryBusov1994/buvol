@@ -183,7 +183,7 @@ export const leadForm = {
 
 // Шаг 2 — копирайтинг: тексты будут использованы прямо в компонентах.
 export const hero = {
-  overline: "СТО «Буйвол Мотор» · Екатеринбург",
+  overline: "Буйвол Мотор · Екатеринбург",
   headlineTop: "БУЙВОЛ",
   headlineBottom: "МОТОР",
   subheadline:

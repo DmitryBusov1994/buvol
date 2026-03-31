@@ -34,7 +34,7 @@ const STEAM_RIGHT = {
   rotate: [0, 3.5, 0],
 };
 
-/** «СТО … · Город» → две строки для иерархии H1 */
+/** «Название · Город» → строка города под H1 */
 function splitHeroOverline(overline: string): { main: string; city?: string } {
   const parts = overline.split(/\s*·\s*/).map((s) => s.trim());
   if (parts.length >= 2) return { main: parts[0]!, city: parts.slice(1).join(" · ") };
@@ -243,29 +243,26 @@ export function Hero() {
               </motion.div>
             </motion.div>
           </div>
-          <div className="relative z-[4] flex w-full min-w-0 max-w-2xl flex-1 flex-col items-stretch text-left">
+          <div className="relative z-[4] flex w-full min-w-0 max-w-2xl flex-1 flex-col items-center text-center md:items-start md:text-left">
             <motion.h1
-              className="mb-4 sm:mb-5 lg:mb-6"
+              className="mb-4 flex w-full flex-col items-center sm:mb-5 md:items-start lg:mb-6"
               initial={reduced ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={t}
             >
-              <span className="logo-hero-title-brand" aria-hidden="true">
-                <span className="logo-hero-title-prefix">СТО «</span>
+              <span className="logo-hero-title-brand">
                 <span className="logo-hero-title-word-top">БУЙВОЛ</span>
                 <span className="logo-hero-title-word-bottom">МОТОР</span>
-                <span className="logo-hero-title-prefix">»</span>
               </span>
-              <span className="sr-only">{hero.overline}</span>
               {heroCityLine ? (
-                <span className="mt-2 block text-sm text-orange-200/75 sm:mt-2.5 sm:text-base">
+                <span className="mt-2 block w-full text-sm text-orange-200/75 sm:mt-2.5 sm:text-base">
                   {heroCityLine}
                 </span>
               ) : null}
             </motion.h1>
 
             <motion.p
-              className="mb-5 max-w-xl text-base leading-relaxed text-white/90 sm:mb-5 sm:text-lg md:mb-6 lg:text-xl"
+              className="mb-5 max-w-2xl text-base leading-relaxed text-white/90 sm:mb-5 sm:text-lg md:mb-6 lg:text-xl"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.08 }}
@@ -274,13 +271,13 @@ export function Hero() {
             </motion.p>
 
             <motion.ul
-              className="mb-0 flex max-w-2xl flex-col gap-3 text-sm text-white/80 md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2.5 md:text-[15px]"
+              className="mb-0 flex w-full max-w-2xl flex-col items-center gap-3 text-sm text-white/80 md:items-stretch md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-2.5 md:text-[15px]"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.1 }}
             >
               {hero.chips.map((c) => (
-                <li key={c} className="flex items-start gap-3">
+                <li key={c} className="flex w-full max-w-md items-start justify-center gap-3 md:max-w-none md:justify-start">
                   <span
                     aria-hidden="true"
                     className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-orange-400 shadow-[0_0_10px_rgba(255,120,40,.85)]"
@@ -291,14 +288,14 @@ export function Hero() {
             </motion.ul>
 
             <motion.div
-              className="mt-5 flex w-full max-w-2xl justify-start md:mt-6"
+              className="mt-5 flex w-full max-w-2xl justify-center md:justify-start md:mt-6"
               initial={reduced ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={reduced ? undefined : { duration: 0.3, delay: 0.12 }}
             >
               <a
                 href="#services"
-                className="press-flame-ghost inline-flex w-full items-center justify-start rounded-2xl border border-white/18 bg-white/[0.06] px-5 py-3 text-left text-sm font-medium leading-snug text-white/92 transition hover:border-orange-400/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/50 sm:w-auto md:px-6 md:text-[15px]"
+                className="press-flame-ghost inline-flex w-full items-center justify-center rounded-2xl border border-white/18 bg-white/[0.06] px-5 py-3 text-center text-sm font-medium leading-snug text-white/92 transition hover:border-orange-400/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400/50 sm:w-auto sm:justify-start sm:text-left md:px-6 md:text-[15px]"
               >
                 {hero.ctaSecondary}
               </a>

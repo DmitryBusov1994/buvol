@@ -583,23 +583,13 @@ h3 {
     drop-shadow(0 0 1px rgba(255, 120, 90, 0.22));
 }
 
-/* Hero H1 «СТО «БУЙВОЛ МОТОР»» — те же градиенты/тени, что .logo-header-word-*, крупный масштаб */
+/* Hero H1 «БУЙВОЛ МОТОР» — те же градиенты/тени, что .logo-header-word-*, крупный масштаб */
 .logo-hero-title-brand {
   display: inline-flex;
   max-width: 100%;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   column-gap: 0.3em;
-  row-gap: 0.12em;
-}
-
-.logo-hero-title-prefix {
-  font-family: var(--font-heading), sans-serif;
-  line-height: 1.1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(254 215 170 / 0.92);
-  font-size: clamp(0.8125rem, 2.2vw, 1.125rem);
 }
 
 .logo-hero-title-word-top,
