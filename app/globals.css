@@ -318,7 +318,7 @@ h3 {
 
 .preloader-scene {
   position: relative;
-  width: 320px;
+  width: 248px;
   height: 160px;
 }
 
@@ -345,7 +345,8 @@ h3 {
 
 .loader-gear {
   position: absolute;
-  right: 0;
+  left: 118px;
+  right: auto;
   top: 50%;
   transform: translateY(-50%);
   width: 130px;
@@ -399,7 +400,7 @@ h3 {
 
 @media (max-width: 480px) {
   .preloader-scene {
-    width: 240px;
+    width: 198px;
     height: 120px;
   }
 
@@ -408,6 +409,7 @@ h3 {
   }
 
   .loader-gear {
+    left: 98px;
     width: 100px;
     height: 100px;
   }
