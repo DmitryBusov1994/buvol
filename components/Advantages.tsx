@@ -36,9 +36,9 @@ export function Advantages() {
               whileInView={reduced ? undefined : "show"}
               viewport={{ once: true, amount: 0.2 }}
               variants={revealVariants}
-              className="flex h-full flex-col rounded-2xl border border-black/10 bg-white p-4 shadow-[0_12px_32px_rgba(0,0,0,.05)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,.08)] md:rounded-2xl md:p-5"
+              className="flex h-full flex-col rounded-2xl border border-black/10 bg-white p-3 shadow-[0_12px_32px_rgba(0,0,0,.05)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,.08)] md:rounded-2xl md:p-4"
             >
-              <div className="flex min-h-[2.75rem] shrink-0 items-start gap-3 md:min-h-[3.25rem]">
+              <div className="flex min-h-[2.5rem] shrink-0 items-start gap-2.5 md:min-h-[2.875rem]">
                 <span
                   aria-hidden
                   className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-brand-red/80"
@@ -47,7 +47,7 @@ export function Advantages() {
                   {a.title}
                 </span>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-ink/70">{a.text}</p>
+              <p className="mt-1 text-sm leading-relaxed text-ink/70">{a.text}</p>
             </motion.div>
           ))}
         </div>
