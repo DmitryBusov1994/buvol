@@ -40,9 +40,9 @@ export function Contacts() {
 
             <div className="mt-8 grid gap-4">
               {[
-                { label: "Телефон" as const, value: contacts.todos.phone || "—", multiline: true },
                 { label: "Адрес" as const, value: contacts.todos.address || "—" },
                 { label: "Режим работы" as const, value: contacts.todos.hours || "—" },
+                { label: "Телефон" as const, value: contacts.todos.phone || "—", multiline: true },
                 { label: "Telegram" as const, value: contacts.todos.telegram || "—" },
               ].map((row, i) => {
                 const tgHref = row.label === "Telegram" ? contacts.todos.telegramHref : undefined;
