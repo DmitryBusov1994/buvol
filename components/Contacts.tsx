@@ -43,7 +43,6 @@ export function Contacts() {
                 { label: "Телефон" as const, value: contacts.todos.phone || "—", multiline: true },
                 { label: "Адрес" as const, value: contacts.todos.address || "—" },
                 { label: "Режим работы" as const, value: contacts.todos.hours || "—" },
-                { label: "WhatsApp" as const, value: contacts.todos.whatsapp || "—" },
                 { label: "Telegram" as const, value: contacts.todos.telegram || "—" },
               ].map((row, i) => {
                 const tgHref = row.label === "Telegram" ? contacts.todos.telegramHref : undefined;
@@ -91,12 +90,7 @@ export function Contacts() {
           </div>
 
           <div className="max-w-[min(100%,400px)] justify-self-start md:max-w-none">
-            <LeadRequestForm
-              density="compact"
-              title={leadForm.contactsCardTitle}
-              description={leadForm.contactsCardHint}
-              surfaceClassName="bg-white"
-            />
+            <LeadRequestForm density="compact" title={leadForm.contactsCardTitle} surfaceClassName="bg-white" />
           </div>
         </div>
       </div>

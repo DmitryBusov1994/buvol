@@ -2,7 +2,7 @@ export function Footer({ className = "" }: { className?: string }) {
   return (
     <footer className={["bg-surface-darker", className].filter(Boolean).join(" ")}>
       <div className="layout-container section-y-compact text-sm text-white/60">
-        <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col items-start gap-4">
           <a
             href="#hero"
             className="group min-w-0 leading-tight text-left transition-opacity hover:opacity-95"
@@ -15,9 +15,6 @@ export function Footer({ className = "" }: { className?: string }) {
               Екатеринбург • ремонт и ТО грузовой техники
             </div>
           </a>
-          <div className="text-xs text-white/40">
-            © {new Date().getFullYear()} • <span className="text-white/50">TODO: реквизиты</span>
-          </div>
         </div>
       </div>
     </footer>

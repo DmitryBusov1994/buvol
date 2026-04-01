@@ -88,10 +88,6 @@ export function LeadRequestForm({
       >
         {c.submit}
       </button>
-
-      <div className={compact ? "text-[11px] leading-relaxed text-ink/60" : "text-xs leading-relaxed text-ink/60"}>
-        {c.disclaimer} <span className="text-ink/70">{c.policyNote}</span>
-      </div>
     </form>
   );
 

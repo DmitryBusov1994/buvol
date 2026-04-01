@@ -175,10 +175,7 @@ export const leadForm = {
   problemPlaceholder:
     "Например: тягач, шум в КПП; нужно окно на диагностику.",
   submit: "Отправить заявку",
-  disclaimer: "Нажимая «Отправить», вы соглашаетесь на обработку данных.",
-  policyNote: "TODO: добавить ссылку на политику",
   contactsCardTitle: "Оставить заявку",
-  contactsCardHint: "Форма — UI. Интеграцию отправки вы добавите позже.",
 };
 
 // Шаг 2 — копирайтинг: тексты будут использованы прямо в компонентах.
@@ -202,6 +199,7 @@ export const services: ServiceGroup[] = [
     description: "",
     items: [
       { label: "Выезд специалиста (в пределах города)", priceRub: "5 000 ₽" },
+      { label: "Выезд специалиста (по области)", priceRub: "индивидуально" },
       { label: "Полное ТО (тягач)", priceRub: "11 000 ₽" },
       { label: "Полное ТО (самосвал)", priceRub: "12 000 ₽" },
       { label: "Нормо‑час работ", priceRub: "3 000 ₽" },
@@ -271,6 +269,12 @@ export const services: ServiceGroup[] = [
       { label: "Схождение 8×4", priceRub: "7 000 ₽" },
     ],
   },
+  {
+    id: "welding",
+    title: "Сварочные работы",
+    description: "",
+    items: [{ label: "Сварочные работы", priceRub: "индивидуально" }],
+  },
 ];
 
 export const advantages = [
@@ -288,7 +292,7 @@ export const advantages = [
   },
   {
     title: "Плановое ТО без лишнего",
-    text: "",
+    text: "Полное ТО тягача — 11 000 ₽, самосвала — 12 000 ₽. Удобно для автопарков: меньше внеплановых ремонтов и простоев.",
   },
   {
     title: "Безопасность на первом месте",
@@ -384,7 +388,6 @@ export const contacts = {
     phone: "8 996 595 68 88\n8 900 205 94 83",
     address: "Свердловская область, г. Берёзовский, ул. Коммуны, 79А",
     hours: "Пн–Пт: 9:00 – 18:00",
-    whatsapp: "",
     telegram: "@buivol_motor",
     telegramHref: "https://t.me/buivol_motor",
   },

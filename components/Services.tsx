@@ -158,7 +158,9 @@ export function Services() {
                     +
                   </span>
                 </div>
-                <div className="mt-1.5 text-sm leading-relaxed text-ink/70">{group.description}</div>
+                {group.description ? (
+                  <div className="mt-1.5 text-sm leading-relaxed text-ink/70">{group.description}</div>
+                ) : null}
               </summary>
               <ul className="mt-3 space-y-2">
                 {group.items.map((it) => (
