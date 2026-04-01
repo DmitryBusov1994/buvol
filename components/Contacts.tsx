@@ -60,24 +60,24 @@ export function Contacts() {
                       {row.label}
                     </div>
                     {row.label === "Telegram" && tgHref ? (
-                      <div className="mt-1 text-base">
+                      <div className="mt-1 text-base text-white/90">
                         <a
                           href={tgHref}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2.5 rounded-lg outline-none transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-orange-400/60"
+                          className="inline-flex items-center gap-2.5 rounded-lg text-white/90 outline-none transition hover:text-white focus-visible:ring-2 focus-visible:ring-orange-400/60"
                           aria-label={`Telegram ${contacts.todos.telegram}`}
                         >
-                          <TelegramGlyph className="contacts-telegram-icon-motor h-7 w-7 shrink-0" />
-                          <span className="contacts-card-value-motor">{contacts.todos.telegram}</span>
+                          <TelegramGlyph className="h-7 w-7 shrink-0 text-[#2AABEE]" />
+                          <span>{contacts.todos.telegram}</span>
                         </a>
                       </div>
                     ) : (
                       <div
                         className={
                           "multiline" in row && row.multiline
-                            ? "contacts-card-value-motor mt-1 whitespace-pre-line text-base"
-                            : "contacts-card-value-motor mt-1 text-base"
+                            ? "mt-1 whitespace-pre-line text-base text-white/90"
+                            : "mt-1 text-base text-white/90"
                         }
                       >
                         {row.value}
