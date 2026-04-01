@@ -216,6 +216,47 @@ h3 {
   z-index: 1;
 }
 
+/*
+ * Карточки Телефон / Адрес / Режим / Telegram: внутри — тот же растр, что у секции «Кому помогаем»
+ * (hero_bg_v1_metal), + лёгкая плашка как у карточек who. URL задаётся в компоненте: --contacts-card-metal-bg
+ */
+.contacts-detail-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.contacts-detail-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background-image: var(--contacts-card-metal-bg, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contacts-detail-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: rgb(255 255 255 / 0.05);
+  transition: background 0.2s ease;
+}
+
+.contacts-detail-card:hover::after {
+  background: rgb(255 255 255 / 0.07);
+}
+
+.contacts-detail-card > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* FAQ — буйвол справа, прижат к нижнему краю секции; зазор ~2cm до текстового столбца */
 #faq {
   position: relative;
