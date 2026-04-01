@@ -54,7 +54,7 @@ export function Contacts() {
                     whileInView={reduced ? undefined : "show"}
                     viewport={{ once: true, amount: 0.2 }}
                     variants={revealVariants}
-                    className="rounded-2xl border border-white/10 bg-white/5 p-5"
+                    className="flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-white/5 px-3.5 py-3.5 transition hover:-translate-y-0.5 hover:bg-white/[0.07] md:px-4 md:py-4"
                   >
                     <div className="font-[var(--font-heading)] text-[10px] uppercase tracking-[0.12em] text-white/55">
                       {row.label}
