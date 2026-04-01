@@ -2,11 +2,11 @@
  * Webhook Google Apps Script → Telegram (обработка на стороне скрипта).
  * Замените URL при смене деплоя: см. LEAD_FORM_WEBHOOK_URL ниже.
  *
- * В Apps Script: doPost(e), JSON из e.postData.contents; ответ 200 + JSON и CORS
- * (иначе браузер заблокирует fetch). При необходимости обработайте OPTIONS для preflight.
+ * Тело: application/x-www-form-urlencoded (URLSearchParams). В doPost поля — e.parameter.name и т.д.
+ * Не задавайте вручную Content-Type для JSON: скрипт ожидает form-data.
  */
 export const LEAD_FORM_WEBHOOK_URL =
-  "https://script.google.com/macros/s/AKfycby-3jBdo4-1tRXC3M0sDyw2UmX9f0prJpCZ7isyVQkzPhiJbQSljL0xt7Ahg8Vjwz5OFg/exec";
+  "https://script.google.com/macros/s/AKfycbzrK0i1aOxtUiV2EehKVgDE9sGbTNsI7tMh6YidtwEu8C0mfMeY80kHsQc23cwN4_jcMQ/exec";
 
 const SOURCE_LABEL = "Сайт Buivol Motor";
 
@@ -23,18 +23,16 @@ export async function postLeadForm(body: {
   phone: string;
   message: string;
 }): Promise<void> {
+  const formData = new URLSearchParams();
+  formData.append("name", body.name);
+  formData.append("phone", body.phone);
+  formData.append("message", body.message);
+  formData.append("source", SOURCE_LABEL);
+
   const res = await fetch(LEAD_FORM_WEBHOOK_URL, {
     method: "POST",
     mode: "cors",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8",
-    },
-    body: JSON.stringify({
-      name: body.name,
-      phone: body.phone,
-      message: body.message,
-      source: SOURCE_LABEL,
-    }),
+    body: formData,
   });
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
