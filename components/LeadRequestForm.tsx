@@ -88,6 +88,7 @@ export function LeadRequestForm({
       >
         {c.submit}
       </button>
+      {compact ? <div className="min-h-[2.5rem] shrink-0" aria-hidden /> : null}
     </form>
   );
 
@@ -111,6 +112,8 @@ export function LeadRequestForm({
         <p className={compact ? "mt-1.5 text-xs leading-snug text-ink/70" : "mt-2 text-sm text-ink/70"}>
           {description}
         </p>
+      ) : compact && title ? (
+        <div className="mt-1.5 min-h-[2.375rem] shrink-0" aria-hidden />
       ) : null}
 
       {compact ? <div className="mt-4">{form}</div> : form}
