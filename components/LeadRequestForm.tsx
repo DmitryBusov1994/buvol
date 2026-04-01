@@ -88,7 +88,14 @@ export function LeadRequestForm({
       >
         {c.submit}
       </button>
-      {compact ? <div className="min-h-[2.5rem] shrink-0" aria-hidden /> : null}
+      {compact ? (
+        <div
+          className="pointer-events-none select-none text-[11px] leading-relaxed text-ink/60 invisible"
+          aria-hidden
+        >
+          {c.disclaimer} <span className="text-ink/70">{c.policyNote}</span>
+        </div>
+      ) : null}
     </form>
   );
 
@@ -113,7 +120,12 @@ export function LeadRequestForm({
           {description}
         </p>
       ) : compact && title ? (
-        <div className="mt-1.5 min-h-[2.375rem] shrink-0" aria-hidden />
+        <p
+          className="pointer-events-none select-none mt-1.5 text-xs leading-snug text-ink/70 invisible"
+          aria-hidden
+        >
+          {c.contactsCardHint}
+        </p>
       ) : null}
 
       {compact ? <div className="mt-4">{form}</div> : form}
