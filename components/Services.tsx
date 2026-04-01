@@ -104,7 +104,7 @@ export function Services() {
           </div>
         </div>
 
-        <div className="mt-10 hidden min-w-0 items-center gap-1 md:flex md:flex-nowrap md:gap-2 md:overflow-x-auto md:overscroll-x-contain md:pb-0.5 [scrollbar-gutter:stable]">
+        <div className="mt-10 hidden min-w-0 items-center gap-1 md:flex md:flex-nowrap md:gap-[calc(0.5rem-1mm)] md:overflow-x-auto md:overscroll-x-contain md:pb-0.5 [scrollbar-gutter:stable]">
           {tabs.map((t) => {
             const isActive = active === t.id;
             return (
