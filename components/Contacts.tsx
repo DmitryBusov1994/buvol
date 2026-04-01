@@ -24,11 +24,6 @@ const contactsDecoStyle = {
   "--contacts-garage-bg": `url("${publicAsset("/images/bg_contact_garage.webp")}")`,
 } as CSSProperties;
 
-/** Тот же фон, что у секции «Кому помогаем» (#who), для читаемости текста в карточках контактов */
-const contactsCardMetalStyle = {
-  ["--contacts-card-metal-bg" as string]: `url("${publicAsset("/images/hero_bg_v1_metal.webp")}")`,
-} as CSSProperties;
-
 export function Contacts() {
   const reduced = usePrefersReducedMotion();
 
@@ -59,8 +54,7 @@ export function Contacts() {
                     whileInView={reduced ? undefined : "show"}
                     viewport={{ once: true, amount: 0.2 }}
                     variants={revealVariants}
-                    style={contactsCardMetalStyle}
-                    className="contacts-detail-card flex h-full min-h-0 flex-col rounded-2xl border border-white/10 px-3.5 py-3.5 transition hover:-translate-y-0.5 md:px-4 md:py-4"
+                    className="flex h-full min-h-0 flex-col rounded-2xl border border-white/10 bg-white/10 px-3.5 py-3.5 transition hover:-translate-y-0.5 hover:bg-white/[0.14] md:px-4 md:py-4"
                   >
                     <div className="font-[var(--font-heading)] text-[10px] uppercase tracking-[0.12em] text-white/55">
                       {row.label}
