@@ -583,6 +583,25 @@ h3 {
     drop-shadow(0 0 1px rgba(255, 120, 90, 0.22));
 }
 
+/* Контакты: значения карточек — тот же градиент и тень, что у «МОТОР» (без размера/uppercase шапки) */
+.contacts-card-value-motor {
+  background: linear-gradient(180deg, #ff5a45 0%, #c0392b 48%, #6a1510 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.85))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 1px rgba(255, 120, 90, 0.22));
+}
+
+/* Иконка Telegram в контактах: опора на #c0392b + те же тени, что у «МОТОР» */
+.contacts-telegram-icon-motor {
+  color: #c0392b;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.85))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 0 1px rgba(255, 120, 90, 0.22));
+}
+
 /* Hero H1 «БУЙВОЛ МОТОР» — те же градиенты/тени, что .logo-header-word-*, крупный масштаб */
 .logo-hero-title-brand {
   display: inline-flex;
