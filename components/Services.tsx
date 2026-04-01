@@ -189,10 +189,43 @@ export function Services() {
               Полный прайс-лист
             </span>
             <span
-              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-black/10 text-base text-ink/65 transition group-open:rotate-45 md:h-9 md:w-9"
-              aria-hidden
+              className="relative inline-flex h-9 w-9 shrink-0 items-center justify-center"
+              aria-hidden="true"
             >
-              +
+              <span className="absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-open:pointer-events-none group-open:opacity-0">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={publicAsset("/images/faq_gear_indicator_closed.webp")}
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={publicAsset("/images/faq_gear_indicator_closed.png")}
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                    decoding="async"
+                  />
+                </picture>
+              </span>
+              <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-open:opacity-100">
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={publicAsset("/images/faq_gear_indicator_open.webp")}
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={publicAsset("/images/faq_gear_indicator_open.png")}
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 object-contain"
+                    decoding="async"
+                  />
+                </picture>
+              </span>
             </span>
           </summary>
           <div className="border-t border-black/10 px-3 pb-3 pt-3 md:px-4 md:pb-4 md:pt-3">
