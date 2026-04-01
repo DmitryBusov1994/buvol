@@ -104,7 +104,7 @@ export function Services() {
           </div>
         </div>
 
-        <div className="mt-10 hidden items-center gap-1 md:flex md:flex-wrap md:gap-2">
+        <div className="mt-10 hidden min-w-0 items-center gap-1 md:flex md:flex-nowrap md:gap-2 md:overflow-x-auto md:overscroll-x-contain md:pb-0.5 [scrollbar-gutter:stable]">
           {tabs.map((t) => {
             const isActive = active === t.id;
             return (
@@ -113,7 +113,7 @@ export function Services() {
                 type="button"
                 onClick={() => setActive(t.id)}
                 className={[
-                  "inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
+                  "inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber/50",
                   isActive
                     ? "bg-brand-amber text-ink"
                     : "border border-black/10 bg-white text-ink/75 shadow-sm hover:bg-black/[0.03] hover:text-ink",
