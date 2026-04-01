@@ -57,7 +57,9 @@ export function Advantages() {
                   {a.title}
                 </span>
               </div>
-              <p className="text-sm leading-relaxed text-ink/70">{a.text}</p>
+              {a.text ? (
+                <p className="text-sm leading-relaxed text-ink/70">{a.text}</p>
+              ) : null}
             </motion.div>
           ))}
         </div>

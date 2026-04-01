@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Буйвол Мотор — ремонт и ТО грузовой техники в Екатеринбурге",
   description:
     "СТО «Буйвол Мотор»: ремонт и техническое обслуживание тягачей, самосвалов, фургонов и спецтехники. Диагностика, ДВС, КПП, тормоза, подвеска, рулевое.",
-  manifest: publicAsset("/manifest.webmanifest"),
+  /** Без manifest — сайт не позиционируется как PWA, нет промпта «установить приложение». */
   icons: {
     icon: [
       { url: publicAsset("/favicon.ico"), sizes: "any" },

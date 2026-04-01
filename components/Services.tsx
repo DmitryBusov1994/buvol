@@ -24,7 +24,9 @@ function ServiceItems({ groupId }: { groupId: string }) {
         <div className="font-[var(--font-heading)] text-lg tracking-wide text-ink md:text-xl">
           {group.title}
         </div>
-        <p className="mt-2 text-sm leading-relaxed text-ink/70">{group.description}</p>
+        {group.description ? (
+          <p className="mt-2 text-sm leading-relaxed text-ink/70">{group.description}</p>
+        ) : null}
       </div>
       <div className="rounded-2xl border border-black/10 bg-white p-4 shadow-[0_12px_32px_rgba(0,0,0,.05)] md:rounded-3xl md:p-5">
         <div className="text-sm font-semibold text-ink">Ключевые позиции</div>
