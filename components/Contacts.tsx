@@ -24,6 +24,17 @@ const contactsDecoStyle = {
   "--contacts-garage-bg": `url("${publicAsset("/images/bg_contact_garage.webp")}")`,
 } as CSSProperties;
 
+/** Строка с номером → tel:+7… для РФ (8 или +7, допускаются пробелы). */
+function phoneLineToTelHref(line: string): string | null {
+  const t = line.trim();
+  if (!t || t === "—") return null;
+  const d = t.replace(/\D/g, "");
+  if (d.length === 11 && d[0] === "8") return `tel:+7${d.slice(1)}`;
+  if (d.length === 11 && d[0] === "7") return `tel:+${d}`;
+  if (d.length === 10) return `tel:+7${d}`;
+  return null;
+}
+
 export function Contacts() {
   const reduced = usePrefersReducedMotion();
 
@@ -42,7 +53,7 @@ export function Contacts() {
               {[
                 { label: "Адрес" as const, value: contacts.todos.address || "—" },
                 { label: "Режим работы" as const, value: contacts.todos.hours || "—" },
-                { label: "Телефон" as const, value: contacts.todos.phone || "—", multiline: true },
+                { label: "Телефон" as const, value: contacts.todos.phone || "—" },
                 { label: "Telegram" as const, value: contacts.todos.telegram || "—" },
               ].map((row, i) => {
                 const tgHref = row.label === "Telegram" ? contacts.todos.telegramHref : undefined;
@@ -72,16 +83,32 @@ export function Contacts() {
                           <span>{contacts.todos.telegram}</span>
                         </a>
                       </div>
-                    ) : (
-                      <div
-                        className={
-                          "multiline" in row && row.multiline
-                            ? "mt-1 whitespace-pre-line text-base text-white/90"
-                            : "mt-1 text-base text-white/90"
-                        }
-                      >
-                        {row.value}
+                    ) : row.label === "Телефон" ? (
+                      <div className="mt-1 flex flex-col gap-1 text-base text-white/90">
+                        {row.value.split("\n").map((line, idx) => {
+                          const t = line.trim();
+                          if (!t) return null;
+                          const tel = phoneLineToTelHref(t);
+                          if (!tel) {
+                            return (
+                              <span key={idx} className="whitespace-pre-wrap">
+                                {t}
+                              </span>
+                            );
+                          }
+                          return (
+                            <a
+                              key={idx}
+                              href={tel}
+                              className="w-fit rounded text-white/90 outline-none transition hover:text-white focus-visible:ring-2 focus-visible:ring-orange-400/60"
+                            >
+                              {t}
+                            </a>
+                          );
+                        })}
                       </div>
+                    ) : (
+                      <div className="mt-1 text-base text-white/90">{row.value}</div>
                     )}
                   </motion.div>
                 );
