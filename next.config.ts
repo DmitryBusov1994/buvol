@@ -1,27 +1,24 @@
 import type { NextConfig } from "next";
 
-/** Статический экспорт для GitHub Pages (репозиторий = подпуть /buvol). Локально/Vercel: не задавайте GITHUB_PAGES. */
+/** Подпуть на GitHub Pages. Локально / preview: не задавайте DEPLOY_TARGET (или не `ghpages`). */
 const GH_BASE_PATH = "/buvol";
-const ghPages = process.env.GITHUB_PAGES === "1" || process.env.GITHUB_PAGES === "true";
+const isGhPages = process.env.DEPLOY_TARGET === "ghpages";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "export",
+  basePath: isGhPages ? GH_BASE_PATH : "",
+  assetPrefix: isGhPages ? `${GH_BASE_PATH}/` : "",
+  images: {
+    unoptimized: true,
+  },
   /** Совпадает с basePath: иначе publicAsset() в клиенте даёт /hero-logo.* → 404 на Pages. */
   env: {
-    NEXT_PUBLIC_BASE_PATH: ghPages
+    NEXT_PUBLIC_BASE_PATH: isGhPages
       ? GH_BASE_PATH
       : (process.env.NEXT_PUBLIC_BASE_PATH ?? ""),
   },
-  ...(ghPages
-    ? {
-        output: "export" as const,
-        basePath: GH_BASE_PATH,
-        trailingSlash: true,
-      }
-    : {}),
-  images: {
-    unoptimized: ghPages,
-  },
+  ...(isGhPages ? { trailingSlash: true } : {}),
   /** Иначе при открытии через 127.0.0.1 Next блокирует /_next/* и страница «пустая» */
   allowedDevOrigins: ["127.0.0.1", "localhost"],
 
@@ -56,4 +53,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-

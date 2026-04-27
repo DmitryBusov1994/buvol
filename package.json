@@ -8,7 +8,7 @@
     "dev:fresh": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next dev --turbopack -p 3010 -H 0.0.0.0",
     "dev:fresh:webpack": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next dev -p 3010 -H 0.0.0.0",
     "build": "next build",
-    "build:pages": "cross-env GITHUB_PAGES=1 NEXT_PUBLIC_BASE_PATH=/buvol next build",
+    "build:pages": "cross-env DEPLOY_TARGET=ghpages next build",
     "start": "next start -p 3010 -H 0.0.0.0",
     "lint": "next lint",
     "fix-hero-logo": "node scripts/patch-hero-logo.cjs",
